@@ -5,9 +5,10 @@ class AbstractDemo{
 };
 class ODemo:AbstractDemo{
 private:
-	string Name;
 	string Company;
 	int Age;
+protected:
+	string Name;
 public:
 	void setName(string name){
 		Name=name;
@@ -30,13 +31,19 @@ public:
 		else cout<<Name<<" ,Sorry ! No Promotion!"<<endl;
 	}
 };
-
+class Devs: public ODemo{
+public:
+	string favProgLang;
+	Devs(string name,string comp,int age,string lang):ODemo(name,comp,age){
+		favProgLang=lang;
+	}
+	void FixBug(){
+		cout<<Name<<" is fixing bug in "<<favProgLang<<endl;
+	}
+};
 int main(){
-	ODemo od=ODemo("Saquib","Google",23);
-	od.Intro();
-	od.Prom();
-	ODemo od1=ODemo("Ahmed","Amazon",35);
-	od1.Intro();
-	od1.Prom();
+	Devs d=Devs("Saquib","Amazon",32,"C++");
+	d.FixBug();
+	d.Prom();
 	return 0;
 }
