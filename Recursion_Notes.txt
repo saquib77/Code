@@ -1,0 +1,14 @@
+-----------------Recursion-------------------
+	Recursion : Recursion is defined when a funtion call itself by applying some subroutine on the  parameters by keeping an extra space overhead(Call Stack).
+
+	
+	1st-> Find the smallest subproblem for which we know the answer.
+	2nd-> Assume that for the given problem recursion will correctly calculate a
+		  subproblem.
+	3rd-> Self Work.
+
+		i)    Base Case.
+		ii)   Recursive Assumption.
+		iii)  Return result.
+
+		

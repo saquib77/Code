@@ -1,0 +1,9 @@
+#include<bits/stdc++.h>
+using namespace std;
+pair<vector<char>,pair<int,int>>maxDestruction(map<>){
+
+}
+
+int main(){
+	
+}

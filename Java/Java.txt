@@ -1,0 +1,1488 @@
+23 Jan/2021
+
+Operator : Predefined token's & keywords that can perform some kind of operations on operands
+
+Categories : It having 2 types :-
+		1) No operands invloved.
+		2) Types of operations.
+
+			1.i) Unary(-x,++x,--x,(Negation) Operator)
+			  ii) Binary (x-y,x+y,x&&y,x||y)
+			  iii) Ternary (condition ? exp1 : exp2)
+
+			2 i) Arithematic Operator(-, +, % , /, *) Not applicable with float & double.
+			  ii) Relational Operator (==,>=,=<,!=)
+			  iii) Logical Operator(!,&&,||)
+		3) Bitwise Operator(&,|,^,<<,>>,>>>)
+			i) & Op -> 
+						byte x=10;
+						byte y=8;
+						
+						byte z=x&y;		0 0 0 0 1 0 1 0   (10)
+										0 0 0 0 1 0 0 0   (8)  &
+										---------------
+										0 0 0 0 1 0 0 0   (8)
+			ii) | Op ->
+										0 0 0 0 1 0 1 0   (10)
+										0 0 0 0 1 0 0 0   (8)  |
+										---------------
+										0 0 0 0 1 0 1 0   (8)
+
+			iii) << Left Shift (Multiplication)
+			iv)  >> Right Shift (Division)
+			 v)  >>> Right Shift With Carry.
+
+		* Usage of Bitwise :
+			i) Determining Even or Odd
+				1 -> (x%2==0) EVEN OR (x%2==1) ODD
+				2 -> (x&1)==0 EVEN OR (x&1)==1 ODD
+			ii) Off first 1 bit from left
+				suppose x=10;
+					x=x & (x-1)
+			iii) Counting num of One's
+					byte x=10;
+						int count=0;
+						while(x>0){
+							if((x&1)==1) count++;
+							x=x>>1;
+						}
+						System.out.println(count);
+
+						int count=0;
+						while(x>0){
+							count++;
+							x=(x&(x-1));
+						}
+						System.out.println(count);
+			iv) Toggle a particular bit
+						x=x^(1<<(pos-1));
+
+			v) ON/OFF a Particular bit
+						i)  ON -> x|(1<<(pos-1));
+						ii) OFF ->  y=x^(1<<(pos-1));
+									x=x&y;
+			vi) Power of 4
+				int x=65;
+	            int c=0,p=0;
+	            while(x!=0){
+	                    if((x&1)==1) c++;
+	                    p++;
+	                    x=x>>1;
+	            }
+	            if(c==1 && (p&1)==1) System.out.println("Power of Four");
+	            else System.out.println("Not a power of four");
+
+Control Statement : Statement that control that flow of execution of process
+					there are 3 types of Control statement
+						i) Conditional      - if ,if-else,Switch
+						ii)Loop Based		- for loop,while loop,do-while loop,for-each loop
+						iii) Jump statement - break,continue
+					In Java goto is not a conditional statement but it is a reserved word.
+
+					Two Types of Loop : i) Deterministic & ii) Non-Deterministic.
+
+					Jump Statement in Java 
+						i) Labeled Break 
+							ab:
+							for(-----------){
+								for(--------){
+									if(----) break ab;
+								}
+							}
+
+						ii) Labeled Continue
+							ab:
+							for(-----------){
+								for(--------){
+									if(----) continue ab;
+								}
+							}
+
+					Conditional Statement : 
+						i)Switch:
+
+							switch(x){
+								case 1:
+									-------
+								case 'A':
+									-------
+								case "String":    //<-----Not in C/C++
+									-------
+							}
+						ii) for-each:
+
+
+Java Code Convention:
+	i) Keyword : Keyword are in lower case
+	ii) Variables & Method : First character of each word should be in upper case except first word.
+					int ageOfStudent;
+					int maxNum;
+
+					int getNum();//for method
+
+	iii) Constant :	Each character should be in upper case.
+					final int AGE=20;
+
+	iv) Class : First character of each word should be in upper case
+					class MyClass{
+						--------
+						------
+						---
+					}	
+
+	v) int identifier can use currency symbol in java.
+
+	#* A Source file can have more than one class but it can have only one public class
+
+	if class having public class MClass{ } source file name be also same as class name.
+
+	#java Class File -> Class Loader -> Method Area ->  Heap Memory (String Const Pool) -> Stack -> PC(Program Counter) 
+
+
+	#* Static  & Non-Static Block:
+		class StaticDemo{
+			public static void main(String[]args){   //from JDK 5.1 main is necessary. if we dont write main method its a runtime error.
+				System.out.println("Main Block");
+			}
+			static{
+				System.out.println("Static Block");
+			}
+		}
+
+		O/P: Static Block
+			 Main Block
+
+		class StaticMain{
+			public static void main(String[]args){
+				System.out.println("Main Block");
+				StaticDemo sd=new StaticDemo();
+			}
+		}
+		class StaticDemo{
+			static{
+				System.out.println("Static Block");
+			}
+		}
+
+		O/P: Main Block
+			 Static Block
+
+###Static Demo
+	class StaticMain{
+        public static void main(String[]args){
+                System.out.println("Main Block");
+                StaticDemo sd=StaticDemo.factory();
+                sd.printer();
+        }
+
+	}
+	class StaticDemo{
+        private StaticDemo(){}                         //made private not to access by anyone. also we can achive singleton pattern
+        private static StaticDemo sd;				   //also we are able to make only one object at a time. 
+        static{
+                sd=new StaticDemo();
+        }
+        static StaticDemo factory(){
+                return sd;								// returning object.
+        }
+        void printer(){
+                System.out.println("Printer");
+        }
+	}
+
+	O/P: Main Block
+		 Printer.
+
+
+###Non-Static Demo
+
+	class NonStaticDemo{
+		NonStaticDemo(){
+				System.out.println("Constructor Called");          // constructor is called after nonstatic block call.	
+		}
+        {
+                System.out.println("Non-Static Block");            // How many time the object is created Non-Static block will call that many time the object is created.
+        }
+        static {
+                System.out.println("Static Block");               // And Static member will call one time when object is created. 
+        }
+	}
+
+	class NonStaticMain{
+        public static void main(String[]args){
+                NonStaticDemo nsd1=new NonStaticDemo();
+                NonStaticDemo nsd2=new NonStaticDemo();
+        }
+	}
+
+	O/P: Static Block
+		 Non-Static Block
+         Constructor Called
+         Non-Static Block
+         Constructor Called
+
+
+    Member of a class
+    	i) Variables.
+    	ii) Constants
+    	iii) Constructor
+    	iv) Methods
+    	v) Classes(Nested Class).
+
+
+    Automatic Garbage Collection
+    	* Java Has No Desructor Concept as C++ has.
+    	* Releasing of memory is done by JVM using mark and sweep technique.
+    												| Mark and sweep , If any object of reference is not pointing to anywhere,
+    																   JVM will mark those reference of Object and after then when
+    												                   JVM is ideal then it will sweep those references. 
+
+ 		
+
+ ###Modifiers
+ 			i) Access Modifier(Modify Accessibilty) : 
+ 			  *Modifies accessbility of class,interface or its members.
+ 			  *only public and default accessibility are applicable with class or interface.
+ 				i)Default(No-Keyword)
+ 				ii)Private(private)         //Not Applicable in Class
+ 				iii)Public(public)
+ 				iv) Protected(protected)    //Not Applicable in Class
+
+ 			ii) Non-Access Modifier(Modify behaviour)            //// Non-Access Modifiers cannot applicable with constructor.
+ 				i) static 
+ 				ii) final
+ 				iii) abstract
+ 				iv) strictfp			(only for method)	Standard : IEEE754
+ 				v) native
+ 				vi) transient
+ 				vii) volatile
+ 				viii) Synchronised
+
+
+ 		Any Object having Three properties:
+ 			i) State.(eg; Member's)
+ 			ii) Identity. (eg; )
+ 			iii) Behaviour. (What an object can do)
+
+
+
+ ###Package Concept:
+ 			package mypkg;
+			import java.util.*;
+			class MyClass{
+        		public static void main(String[]args){
+                	ArrayList ai=new ArrayList();
+                	ai.add(30);
+ 					System.out.println(ai.get(0));
+        		}
+			}
+			To Compile : javac -d . MyCLass.java 
+			To Run: java mypkg.MyClass
+
+		package mypkg;
+		class AccessDemo{
+        	int x=10;
+        	public int y=20;
+        	protected int z=30;
+        	private int k=40;
+        	public static void main(String[]args){
+            	    AccessDemo a=new AccessDemo();
+                	System.out.println(a.x+" "+a.y+" "+a.z+" "+a.k);
+        	}
+		}
+		To Compile : javac -d . AccessDemo.java
+		To Run : java mypkg.AccessDemo
+
+
+
+		package mypkg;
+		class AccessDemo{
+        	int x=10;
+        	public int y=20;
+        	protected int z=30;
+        	private int k=40;
+        	public static void main(String[]args){
+            	    AccessDemo a=new AccessDemo();
+                	System.out.println(a.x+" "+a.y+" "+a.z+" "+a.k);
+        	}
+		}
+
+		package mypkg;
+		class AccessDemo1{
+        	public static void main(String[]args){
+            	    AccessDemo a=new AccessDemo();
+                	System.out.println(a.x+" "+a.y+" "+a.z+" "+a.k);   //Error : Private Member cannot be accessible in another class of same package.
+        	}
+		}
+
+		package mpkg;
+		class AccessDemo2{
+        	public static void main(String[]args){
+            	    AccessDemo a=new AccessDemo();
+                	System.out.println(a.x+" "+a.y+" "+a.z+" "+a.k);   //Error : Protected ,Default & Private member's cannot call  a.x , a.z , a.k.
+        	}
+		}
+
+		package mpkg;
+		import mypkg.AccessDemo;
+		class AccessDemo2 extends AccessDemo{
+        	public static void main(String[]args){
+                AccessDemo2 a=new AccessDemo2();
+                System.out.println(a.y+" "+a.z);
+        	}
+		}
+
+
+		# If Class is Default it is not accessible outside the package
+		# Also Default Member's Can't accessible out side the package
+		# if we inherit another class then only Public & Protected is Accessible out side the class.
+
+
+		# If we want any package to import then we have to specify the Package/Class path (eg: import.abc.*;  || import.abc.bbc.*;).
+
+
+
+		    				PRIVATE 		PROTECTED           DEFAULT             PUBLIC
+		
+SAME CLASS                    can             can                 can                 can
+
+
+			SAME PACKAGE      not             can                 can                 can
+DIFFRENT
+CLASS       When Class is     not             not                 not                 not
+              Default
+
+            When Class is     not             Can(Using Child     not                 can
+              Public								Class)
+
+#In Java Casting is of 2 Types:
+	i) Implcit Casting.
+	ii) Explicit Casting.
+
+
+###Wrapper Class :- (java.lang) package
+	To Convert primitive data type into non primitive datatype
+
+		primitive       Size           Non-primitive
+
+	1) byte 			 1              Byte
+	2) short			 2				Short
+	3) int               4              Integer
+	4) long              8              Long
+	5) char              2              Character
+	6) float             4              Float
+	7) double            8              Double
+	8) boolean                          Boolean
+	(undefined)
+		true             8             
+		flase            10
+
+
+###Overloading : (Ease of Code)
+	i) Methods & Constructor can overload Within class and in parent-child pair.
+	ii) If Methods or constructor coexists with some name & diff signature.
+	iii) Early Binding(Polymorpism) At Compile time.
+	iv) Late Binding .
+	v) Operator Overloading is done to only one operator( + ). But Programmer Point of View(You Can't Overload any operator).
+	
+	**Signature is Defined by:
+		1) Number of Arguments.
+		2) Types of Arguments.
+		3) Order of Arguments.
+
+
+
+**Constructor : It having same name as Class Name, Also it does'nt have return type, It is used to initialize the newly created object or method's.
+
+		class OverloadingDemo{
+        	int x,y,z;
+        	OverloadingDemo(){} 
+        	OverloadingDemo(int a){
+        	        x=a;
+        	}
+        	OverloadingDemo(int a,int b){
+                this(a);
+                y=b;
+        	}
+        	OverloadingDemo(int a,int b,int c){
+                this(a,b);
+                z=c;
+        	}
+		}
+		class OverloadingMain{  
+        	public static void main(String[]args){
+                OverloadingDemo ob=new OverloadingDemo(1,2);
+            	System.out.println(ob.x+" "+ob.y+" "+ob.z);
+        	}
+		}
+
+
+	System.out.println("Lucknow");
+
+	System -> java.lang (A Class Name)
+	out -> java.io.PrintStream(Reference of Print Stream)
+	println() -> Method in PrintStream Class.
+
+
+###Overridding :  To Enhance the Existing Feature. 
+
+##Factory Method & Sigleton Pattern.
+
+	
+	*Factory Method
+	class MyClass{
+        private MyClass(){}
+        void printer(){
+                System.out.println("Hello");
+        }
+        public static MyClass factory(){
+                MyClass m=new MyClass();
+                return m;
+        }
+	}
+
+	class FactoryMain{
+        public static void main(String[]args){
+                MyClass m1=MyClass.factory();
+                m1.printer();
+        }
+	}
+
+
+	*Singleton Pattern
+	class MyClass{
+        int x;
+        private MyClass(){}
+        void printer(){
+                System.out.println("Hello");
+        }
+        static MyClass m=null;
+        synchronized public static MyClass factory(){        ///synchronized is done to make at a time one object is created , and uses thread concept that
+                if(m==null) m=new MyClass();				 /// if one thread is acquire a object and after releasing the lock on that process then another 
+                return m;									 /// thread is able to acquire that lock .
+        }
+	}
+
+	class FactoryMain{
+        public static void main(String[]args){
+                MyClass m1=MyClass.factory();
+                m1.printer();
+                m1.x=20;
+                MyClass m2=MyClass.factory();
+                System.out.println(m1.x+" "+m2.x);
+        }
+	}
+
+
+###Inheritance : Inheritance there must be atleast 2 classes,
+				 one is parent & other is child. if child inherites parent,
+				 it means all the accessible member of parent can be called through
+				 reference of child class.
+
+
+				 -----------------
+				 | Parent Class  |				class ParentClass{
+				 |               |					
+				 -----------------				}
+		  		       /\						class ChildClass extends ParentClass{
+				       .								
+				       .
+				       .						}
+				       .
+				 -----------------
+				 | Child Class   |
+				 |               |
+				 -----------------
+
+
+		class Parent{
+        	private void p1(){
+                System.out.println("P1");
+        	}
+        	public void p2(){
+             	System.out.println("P2");
+        	}
+		}
+
+		class Child extends Parent{
+        	public void p3(){
+                System.out.println("P3");
+        	}
+		}
+
+		class IMain{ 
+		    public static void main(String[]args){
+		        Parent p=new Parent();
+		        p.p2();
+		        Child c=new Child();                //Parent c=new Child();
+		        c.p2();
+		        c.p3();								//Implicit Casting only parent method able to call
+		    }
+		}
+
+
+		####Inheritance With Abstraction:
+		class Parent{
+        	private void p1(){
+                System.out.println("P1");
+        	}
+        	public void p2(){
+                System.out.println("P2");
+        	}
+		}
+		class Child extends Parent{
+		    public void p2(){
+		        System.out.println("P3");
+		    }
+		}
+		class FactoryMethod{
+		    public static Parent Factory(){
+		        return (new Child());
+		    }
+		}
+		class IMain{
+		    public static void main(String[]args){
+		        Parent c=FactoryMethod.Factory();
+		        c.p2();
+		    }
+		}
+
+
+		class Parent{
+        private void p1(){
+                System.out.println("P1");
+        }
+        public void p2(){
+                System.out.println("P2");
+		        }
+		}
+
+		class Child extends Parent{
+		        public void p2(){
+		                System.out.println("P3");
+		        }
+		}
+		class FactoryMethod{
+		        public static Parent Factory(){
+		                return (new Parent());
+		        }
+		}
+		class IMain{
+		        public static void main(String[]args){
+		                Child c=(Child)FactoryMethod.Factory();
+		                c.p2();
+		        }
+		}
+
+		RunTime Error:
+		Exception in thread "main" java.lang.ClassCastException: class Parent cannot be cast to class Child (Parent and Child are in unnamed module of loader 'app')
+
+
+		###Abstract Class : An abstract class having abstract methods.
+							An Abstract Class can't intantiated Directly
+							if a method is abstract then class should have abstract class.
+							if a complete class having absract then java consider's class is incomplete, this is flaw in java 
+
+
+							abstract class AbstractDemo{
+							    void printer(){
+							            System.out.println("Printer");
+							    }
+							}
+
+							class AbstractMain{ 
+								public static void main(String[]args){
+								    AbstractDemo ab=new AbstractDemo();
+								    ab.printer();
+								}
+							}
+
+							AbstractDemo.java:9: error: AbstractDemo is abstract; cannot be instantiated
+							AbstractDemo ab=new AbstractDemo();
+
+
+						abstract class AbstractDemo{
+					        void printer(){
+					       	    System.out.println("Printer");
+					    	}
+					    	abstract void p();
+						}
+						class Achild extends AbstractDemo{
+							void p(){
+							    System.out.println("P Method");
+							}
+						}
+						class AbstractMain{ 
+							public static void main(String[]args){
+							    Achild ab=new Achild();
+							    ab.printer();
+							    ab.p();
+							}
+						}
+
+
+				####Child Constructor firstly call ParentClass of Default Constructor  
+				if Constructor is parameterized then it is called using super keyword and also it should be a first line of child constructor. 
+				* this and super is Non-Static.
+
+				import java.io.*;
+				class Parent{
+				        PrintStream s=new PrintStream(System.out);
+				        int a;
+				        Parent(int x){
+				                a=x;
+				                s.println("No Args Constructor Of Parent");
+				        }
+				}
+				class Child extends Parent{
+				        Child(){
+				                super(5);
+				                s.println("No Args Constructor of CHild");
+				        }
+				}
+				class Imain{
+				        public static void main(String[]args){
+				                Child c=new Child();
+				        }
+				}
+
+
+
+				###Usage of Super & This Keyword's
+
+					import java.io.*;
+					class Parent{
+					        PrintStream s=new PrintStream(System.out);
+					        void printer(){
+					                s.println("Parent");
+					        }
+					        void caller(){
+					                this.printer();
+					        }
+					}
+					class Child extends Parent{
+					        void print(){
+					                super.caller();
+					        }
+					}
+					class Imain{
+					        public static void main(String[]args){
+					                Child c=new Child();
+					                c.caller();
+					                c.print();
+
+					        }
+					}
+
+
+
+
+	###INTERFACE
+
+		i) An Entity like class
+
+		Iterface can be public & Default, But can't be private and Protected.
+
+		ii) Being Used
+				1) To Provide interface of library
+				2) To Provide Maximum Abstraction
+				3) As an Agreement between Programmer's  Code & lib.
+
+		iii) Defined Used Interface Keyword
+
+		iv) Can't be intantiated.
+
+		v) There are only 3 types of member's in an interface (Up to JDK7) 
+				1) Constants
+				2) Abstract Method
+				3) Classes
+
+		interface MyInterface{
+        	int x=10;            //By Default data member's are public static final
+        	void printer();		 // BY Default Member Function are public abstract.
+		}
+
+		class InterfaceDemo implements MyInterface,MInterface {    // A class can also implements multiple interface.
+		    public void printer(){								//also have to call the member function as accesiblity
+		            System.out.println("Printer"+" "+x);
+		    }
+		}
+		class InterfaceMain{  
+		    public static void main(String[]args){
+		            InterfaceDemo id = new InterfaceDemo();         //MyInterface id = new InterfaceDemo();   --->  it that case only that can be called which having 
+ 		            id.printer();								   //													realtion to interface and class.
+		     		System.out.println(id.x+" "+MyInterface.x);   //Can also be called using object as well as Interface       
+		    }
+		}
+
+
+		class ObjectDemo{ 							//Default any class which has not inherited any class then  by default it inherit's the Object Class(java.lang.Object).
+		        public String toString(){
+		                return "ObjectDemo";
+		        }
+		}
+		class ObjectMain{ 
+		        public static void main(String[]args){
+		                ObjectDemo od=new ObjectDemo();
+		                System.out.println(od.toString());
+		                System.out.println(od.hashCode());
+		        }
+		}
+
+
+
+		#In Sense if Data Members.   In Case of Variable , Data Member's are called from parent class, and in case of method it will call from child.
+		class Parent{
+	        int x;
+	        int y;
+	        Parent(int a,int b){
+                x=a;
+                y=b;
+	        }
+		}
+		class Child extends Parent{
+	        int x;                   -----> Variable's Hiding
+	        int z;
+	        Child(int a,int b,int c,int d){
+                super(a,b);
+                x=super.x;
+                y=d;
+	        }
+		}
+		class VariableDemo{
+		        public static void main(String[]args){
+		                Child c=new Child(10,20,30,40);
+		                System.out.println(c.x+" "+c.y+" "+c.z);
+		        }
+		}
+
+
+		#### MAX Abstraction :
+
+			interface APIinterface{
+        		void printer();
+			}
+			class API implements APIinterface{
+			        public void printer(){
+			                System.out.println("Printer of API");
+			        }
+			}
+			class Factory{
+			        public static APIinterface factory(){
+			                return new API();
+			        }
+			}
+
+			class EAPI extends API{
+			        public void printer(){
+			                System.out.println("Printer of EAPI");
+			        }
+			}
+
+			class APIMain{
+			        public static void main(String[]args){
+			                APIinterface ap = Factory.factory();
+			                ap.printer();     
+			        }
+			}
+
+
+			### Interface as an Agreement
+
+				interface APIinterface{
+				        void printer();
+				}
+				class API{
+				        void M(APIinterface ia){
+				                ia.printer();               
+				        }
+				}
+				class Factory{
+				        public static API factory(){
+				                return new API();
+				        }
+				}
+
+				class MyClass implements APIinterface{
+				        public void printer(){
+				                System.out.println("Printer of MyClass");
+				        }
+				}
+
+				class APIMain{
+				        public static void main(String[]args){
+				                API ap = Factory.factory();
+				                ap.M(new MyClass());
+				        }
+				}
+
+
+### Tagging Interface/Marker Interface : Blank Interface ,used to make an agreement , 
+						if it implements the Serializable then only it is able to serialize.
+
+	##Adapter Class : 
+
+
+
+	##Inner Class : 
+			if a class is a member of another class that class is called inner class.(Class within Class)
+
+			Inner class of 4 types : 
+				i)		Non-Static Inner Class(Inner Class)
+				ii)		Static Inner Class (Nested Class)
+				iii)	Method - Local Inner Class
+				iv)		Annoymous Inner Class.
+
+		i) Non Static Inner Class.
+			class Outer{
+				int x;
+				Outer(int a){
+					x=a;
+				}
+				class Inner{
+					void Printer(){
+						System.out.println(x);
+					}
+				}
+			}
+			class NestedMain{
+				public static void main(String[]args){
+					Outer.Inner oi = new Outer(5).Inner();
+					oi.Printer();
+				}
+			}
+		
+		ii) Static Inner Class .
+
+			class Outer{
+	        	int x;
+	        	Outer(int a){
+	                x=a;
+	        	}
+	        	static class Inner{
+	                void Printer(){
+	                        Outer o=new Outer(5);
+	                        System.out.println(o.x);
+	                }
+	        	}
+			}
+			class NestedMain{
+		        public static void main(String[]args){
+		                Outer.Inner oi = new Outer.Inner();
+		                oi.Printer();
+		        }
+			}
+
+		iii) Method Local Inner Class.
+
+				class Outer{
+					void p(){
+						class Inner{
+							void p2(){
+								System.out.println("P2 Method");
+							}
+						}
+						Inner i=new Inner();
+						i.p2();
+					}
+				}
+				class LocalInner{
+					public static void main(String[]args){
+						Outer o=new Outer();
+						o.p1();
+					}
+				}
+
+
+		iv) Annoymous Inner Class.   (its implements a interface || it extends a class)
+									  it does'nt have any name. 
+
+				interface A{
+					void printer();
+				}
+				class AnnoymousClass{
+					public static void main(String[]args){
+						A a=new A(){
+							public void printer(){
+								System.out.println("Printer Method");
+							}
+						};
+						a.printer();
+					}
+				}:
+
+
+
+				##InterfaceAsAgreement
+
+				//----------------------------//API
+				interface MyInterface{
+				        void printer();
+				}
+				class MyClass{
+				        void m(MyInterface mi){
+				                mi.printer();
+				        }
+				}
+				class Factory{
+				        public static MyClass factory(){
+				                return new MyClass();
+				        }
+				}
+				//---------------------------//Programmer Code
+				class Pcode{
+				        public static void main(String[]args){
+				                MyClass my=Factory.factory();
+				                my.m(new MyInterface(){
+				                        public void printer(){
+				                                System.out.println("Printer Method");
+				                        }
+				                });
+				        }
+				}
+
+
+	###Final
+
+		* Its a non Access Modifier.
+		* It Can be Applied with 
+				1) Variable.  ---> Value can't be Changed.
+				2) Methods.   ---> Methods can not be Overrided.
+				3) Classes    ---> Class can't be extended.
+
+
+			class Parent{
+				public final void p(){
+					System.out.println("P Method");
+				}
+			}
+			class Child extends Parent{
+				public void p(){
+					System.out.println("P of Child");
+				}
+			}
+			class PCmain{
+				public static void main(String[]args){
+					Child c=new Child();
+					c.p();
+				}
+			}
+
+	-----------------------------------------------------------------------------------
+
+	# POJO (Plain Old Java Object):
+			* Object of independent class,mean class must not extends 
+			  any class or implements any interface.
+			* In worst case it can implement tagging or marker interface.
+
+		*Java Bean:
+			* It is an enhancement of POJO.
+			* Having Only private variables and getter and setter method to 
+			  access and set values in variable.
+
+
+			  classJBeanDemo{
+			  	private int age;
+			  	private String name;
+			  	public int getAge(){
+			  		return this.age;
+			  	}
+			  	public void setAge(int age){
+			  		this.age=age;
+			  	}
+			  }
+
+
+		Java Bean is POJO , it contains Private members , also it should be having getter and setter method to set the value and get the value.
+		
+	##Commad Line Arg :
+
+		class CDM{
+        public static void main(String[]args){			//String... args ---->> Elipsis(...)
+                for(int i=0;i<args.length;i++){
+                        System.out.println(args[i]);
+                }
+        }
+
+	##Variable-Arity Method :
+
+		class CMD{
+		    void printer(float f,int... x){
+		            for(int i=0;i<x.length;i++){
+		                    System.out.println(x[i]);
+		            }
+		    }
+		}
+		class CMDMain{
+			public static void main(String[]args){
+		    	CMD c=new CMD();
+		    	c.printer(3.5f,1,2,3,4,5,6,7);
+			}
+		}
+
+
+
+
+	####Interface and Class :
+
+
+		class -----extends----> class  (single)
+
+		class-------implements----->interface (multiple)
+
+		interface-----extends------>interface  (single)
+
+
+			interface A{
+			        void p();
+			}
+			interface B extends A{
+			        void p2();
+			}
+
+			class inter implements A,B{
+			        public void p(){
+			                System.out.println("P Method");
+			        }
+			        public void p2(){
+			                System.out.println("P2 Method");
+			        }
+			}
+			class MyClass2{
+			        public static void main(String[]args){
+			                B i=new inter();
+			                i.p();
+			                i.p2();
+			        }
+			}
+
+
+	##Boxing & Unboxing AND Auto Boxing & Auto Unboxing :
+
+		Boxing : When explicitly primitive to Non-Primitive.   eg: Integer i=new Integer();
+
+		Unboxing : When explicitly Non-primitive to Primitive.  eg: int x=i.intValue();
+
+		AutoBoxing : When implicitly primitive to Non-Primitive.
+
+		Auto Unboxing : When implicitly Non-primitive to Primitive.
+
+
+
+			import java.util.*;
+			class arList{
+			    public static void main(String[]args){
+			            ArrayList a=new ArrayList();
+			            a.add(2);
+			            a.add("Lucknow");
+			            a.add(3.54f);
+			            int x=((Integer)a.get(0)).intValue();
+			            System.out.println(x);
+			            for(int i=0;i<a.size();i++){
+			                    System.out.println(a.get(i));
+			            }
+			    }
+			}
+
+
+
+		##Scanner Class : 
+
+				import java.util.Scanner;
+				class Scan{
+				        public static void main(String[]args){
+				                Scanner sc=new Scanner(System.in);
+				                String in=sc.nextLine();
+				                String[]a=in.split(" ");
+				                for(int i=0;i<a.length;i++){
+				                        int x=Integer.parseInt(a[i]);
+				                        System.out.println(x);
+				                }
+				        }
+				}
+
+
+
+		###Exception Handling :
+
+			Exception : Undesirable Event that occur at run time. If has not been handled process will terminate.
+
+						It is of 2 types :
+								i) Checked Exception(Detected By Compiler)
+								ii) Unchecked Exception(Undetected By Compiler)
+			
+			import java.util.Scanner;
+			class ExceptionDemo{
+			        public static void main(String[]args){
+			                int x=0,y=0;
+			                Scanner sc=new Scanner(System.in);
+			                System.out.println("Enter 2 Number :");
+			                x=sc.nextInt();
+			                y=sc.nextInt();
+			                int z=x/y;
+			                System.out.println(z);
+			        }
+			}
+
+			import java.util.Scanner;
+			class ExceptionDemo1{
+			        public static void main(String[]args){
+			                int x=0,y=0,z=0;
+			                Scanner sc=new Scanner(System.in);
+			                System.out.println("Enter 2 Number :");
+			                String ip=sc.nextLine();
+			                String[]ar=ip.split(" ");
+			                x=Integer.parseInt(ar[0]);
+			                y=Integer.parseInt(ar[1]);
+			                try{
+			                        z=x/y;
+			                        System.out.println(z);
+			                }catch(ArithmeticException ae){
+			                        System.out.println("Second Value Could not be zero :");
+			                        y=sc.nextInt();
+			                        z=x/y;
+			                }
+			                System.out.println(z);
+			        }
+			}
+
+
+			Unchecked Exception : 
+
+				class UnCheckedException{
+			        public static void main(String[]args){
+		                int[] ar=new int[5];
+		                for(int i=0;i<10;i++){
+		                        ar[i]=i+5;
+		                }
+		                for(int i=0;i<ar.length;i++){
+		                        System.out.println(ar[i]);
+		                }
+			        }
+				}
+
+
+			Checked Exception :
+
+				import java.io.*;
+				class CheckedException{
+				    public static void main(String[]args){
+				            File f=new File("/home/Code/Java/Java.txt");
+				            FileInputStream fis=new FileInputStream(f);            ///Need to be handled.
+				            int data;
+				            while((data=fis.read())!=-1){
+				                    System.out.println((char)data);
+				            }
+				    }
+				}
+
+
+
+				import java.io.*;
+				class CheckedException{
+				        public static void main(String[]args){
+				                File f=new File("/home/saquib/Code/Java/Java.txt");
+				                try{
+				                        FileInputStream fis=new FileInputStream(f);
+				                        int data;
+				                        while((data=fis.read())!=-1){
+				                                System.out.print((char)data);
+				                        }
+				                }catch(Throwable t){
+				                        System.out.println("File Not Foune || IO Error!");
+				                }
+				        }
+				}
+
+
+
+				Exception Handling Keyword:
+					i) try
+					ii) catch
+					iii) finally
+					iv) throw
+					v) throws
+
+
+				tyr{
+					-----E1
+					-----E2
+					-----E3
+				}catch(E3 e3){
+					-----
+					-----
+					-----
+				}catch(E2 e2){
+					-----
+					-----
+					-----
+				}catch(E1 e1){
+					-----
+					-----
+					-----
+				}finally{					//finally ( it will always execute ) .
+					------
+					------
+					------
+				}
+
+
+				E3 	    |		E1 --->
+				E2 	    |		E2 --->  Wrong , Because E1 is the parent of E2 , though E3.
+				E1 	    |		E3 --->
+
+
+
+
+				##Try with Resource :
+
+						We use try with resource to not to use finally.
+
+						try(Connection con = DriverManager.getConnection(url,userName,password)){
+
+						}catch(----){				// After the try block connection will Automatically closed.
+
+						}
+
+
+				##Throw && Throws : 
+
+					Throw : to throw the object of some exception occured.
+
+					Throws : to get the info to the compiler that it can throws the method. 
+
+					class A{
+						void m() throws E{
+							----
+							----
+							----
+							if(---){
+								throw new E();
+							}
+						}
+					}
+
+					class B{
+						void m1(){
+							A a=new A();
+							try{
+								a.m();
+							}catch(E e){
+								-----
+								-----
+							}
+						}
+					}
+
+
+
+				##Exception Chainning || Exception Propagation : 
+
+						class A{
+							void m() throws E{
+								throw new E();
+							}
+						}
+						class B{
+							void m1() throws E{
+								A a=new A();
+								a.m();
+							}
+						}
+						class main{
+							public static void main(String[]args) throws E{
+								B b=new B();
+								try{
+									b.m1();
+								}catch(E e){
+									----
+									----
+									----
+								}
+							}
+						}
+
+
+			## Array in java : 
+
+					In Java array is an object that can store multiple homogenous(same data types) data in consecutive memory loaction. 
+					It is an idex based system, idex starting from 0
+
+					int[] a = new int[5];
+					int a[]=new int[5];
+
+					int[] b={2,3,4,5};
+					
+					int [] c = new int[]{2,3,4,5}; ------>Annonymous Array.
+					
+					MyClass[] m = new MyClass[5]; 
+
+					Two D array is of two type : 
+						i) Row Major.
+						ii) Column Major.
+
+
+					import java.util.Scanner;
+					class Arr{
+					        public static void main(String[]args){
+					                Scanner sc=new Scanner(System.in);
+					                int []a=new int [5];
+					                for(int i=0;i<a.length;i++){
+					                        a[i]=sc.nextInt();
+					                }
+					                for(int i=0;i<a.length;i++){
+					                        System.out.println(a[i]);
+					                }
+					        }
+					}
+
+
+					class twoDarr{
+					        public static void main(String[]args){
+					                int [][]td={{1,2,3,4},{4,5},{6,7,8},{9,10,11,12,13,14}};
+					                for(int i=0;i<td.length;i++){
+					                        for(int j=0;j<td[i].length;j++){
+					                                System.out.print(td[i][j]+" ");
+					                        }
+					                        System.out.println();
+					                }
+					        }
+					}
+
+
+					class twoDarr{
+					        public static void main(String[]args){
+					                int [][]td=new int[4][];//{{1,2,3,4},{4,5},{6,7,8},{9,10,11,12,13,14}};    ///NullPointerException.
+					                for(int i=0;i<td.length;i++){
+					                        td[i]=new int[]{2,3,4};						// Run time value assigning.
+					                        for(int j=0;j<td[i].length;j++){
+					                                System.out.print(td[i][j]+" ");
+					                        }
+					                        System.out.println();
+					                }
+					        }
+					}
+
+					class twoDarr{
+					        public static void main(String[]args){
+					                int [][]td={{1,2,3,4,5},{6,7,8,9,10},{11,12,13,14,15}};
+					                for(int i=0;i<td[0].length;i++){
+					                        for(int j=0;j<td.length;j++){
+					                                System.out.print(td[j][i]+" ");
+					                        }
+					                        System.out.println();
+					                }
+					        }
+					}
+
+					When we are fetching the column wise the it will load the refference of that particular block, and these may lead to miss the data of that column.
+
+
+			###In Java all the passing object is based on reference.
+
+			##String in Java : (java.lang.String;)
+
+				*In Java ,String is a class ,object of which can store the sqquence of the characters in consecutive memory locations.
+				*characters can be retrived or accessed using index
+				*index  starting from 0
+				*instance of string can be created in 2 ways:
+
+						1 ) String s = "Lucknow";           ///It will create in string constant pool into heap of jvm ,and also if same string of another object then it
+															//will not create another object it will return same ref of previous string object.
+
+						2 ) String s= new String("kanpur");  // It will create into heap .
+
+				* instance of string in java is immutable .
+
+				Methods in String :
+
+					i)      boolean equals  	---> x.equals(y);
+					ii)     int length  		---> x.length();
+					iii)    String concat  		---> s=s1.concat(s2);
+					iv)		String charAt  		---> c=charAt(i);
+					v)		int indexOf			---> n=indexOf(c);
+					vi)		int lastIndexOf 	---> lastIndexOf(c);
+					vii)	String toUpperCase 	---> toUpperCase();
+					viii)	String toLowerCase 	---> toLowerCase();
+					ix)		String trim 		---> s.trim();
+					x)		String substring  	---> s.substring(startIdx,offset);		//offset idx of that char + 1.
+					xi)		String substring 	---> s.substring(startIdx);				//startIdx to last.
+					xii)	char[] toCharArray()---> s.toCharArray();				//String ss=new String(char[]ch);
+					xiii)   String[] Split(s)	---> s.split(" ");
+
+				###*** Operator Overloading is not provided to programmer , but the language developer have done only one place in String Class, 
+						where '+' is overloaded, to concatenate the two string .
+
+
+					Muable String in Java :
+
+						* Can be created using either StringBuffer
+							or StringBuilder.
+
+						* Diff Between StringBuffer & StringBuilder.
+										|						|
+										methods of  			methods of
+										StringBuffer are 		StringBuilder
+										Synchronised.			Asynchronised.
+
+						* In StringBuffer it Syncronised the methods and after the lock is released , then also another method can use the lock.
+
+
+						StringBuffer sb = new StringBuffer();
+
+						StringBuffer sb = new StringBuffer("Lucknow");
+
+						StringBuffer sb = new StringBuffer(10);
+
+						Initially StringBuffer capacity() method is 16 .
+
+						Initially StringBuffer length() method is 0.
+
+
+
+						class strBuff{
+					        public static void main(String[]args){
+					            StringBuffer sb=new StringBuffer();
+					            StringBuffer sb1=new StringBuffer("Lucknow");
+					            StringBuffer sb2=new StringBuffer(10);
+
+					            System.out.println(sb.capacity());			16
+					            System.out.println(sb.length());			0
+					            System.out.println(sb1.capacity());			7+16 - 23
+					            System.out.println(sb1.length());			7
+					            System.out.println(sb2.capacity());			10
+					            System.out.println(sb2.length());			0
+					        }
+						}
+
+
+
+						* In StringBuffer 
+								* the initial capacity of StringBuffer is Exceded then , JVM will 
+								* search the memory of the length (currentCapacity+1)*2.
+								* and then acquire & lock that memory.
+								* Copy the character of current object into new acquired memory.
+								* update ref table with the new address of StringBuffer Object.
+
+
+
+
+						###Methods of StringBuffer	& StringBuilder.
+
+							1) int length()												->length of string.
+							2) int capacity()											->capacity of StringBuilder.
+							3) void ensureCapacity()									->to ensure the length of memory of StringBuilder.
+							4) StringBuilder reverse()									->reverse the string.
+							5) int indexOf(String s)									->find the char at index of.
+							6) int lastIndex(String s)									->find the last index of the char.
+							7) char charAt(int index)									->find the char at particular index.
+							8) String substring(int sidx,int offset)					->find the substring of string , start index to upto_index.
+							9) String substring(int sidx)								->find the substring from start index.
+							10) StringBuilder delete(int sidx,int offset)				->to delete the char or str in range from start to end
+							11) StringBuilder insert(int sidx,String str)				->to insert the string or char in range.
+							12	StringBuilder repalce(int sidx,int offset,String str)  	->replace the string to another in range.
+
+
+
+
+
