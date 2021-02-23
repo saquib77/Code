@@ -1,4 +1,4 @@
-public class ThreadDemo implements Runnable{
+public class ThreadDemo1 extends Thread{
 	public void run(){
 		for(int i=0;i<5000;i++){
 			System.out.println(i);
@@ -7,10 +7,9 @@ public class ThreadDemo implements Runnable{
 }
 class ThreadMain{
 	public static void main(String[]args){
-		Runnable r = new ThreadDemo();
-		Thread t1 = new Thread(r);
-		Thread t2 = new Thread(r);
+		Thread t1 = new ThreadDemo1();
+		Thread t2 = new ThreadDemo1();
 		t1.start();
-		t1.start();
+		t2.start();
 	}
 }

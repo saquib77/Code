@@ -1491,7 +1491,7 @@ CLASS       When Class is     not             not                 not           
 												then maintained previous process is being loaded into processor.
 
 
-
+							Using Runnable Interface : 
 								public class ThreadDemo implements Runnable{
 									public void run(){
 										for(int i=0;i<5000;i++){
@@ -1509,4 +1509,67 @@ CLASS       When Class is     not             not                 not           
 									}
 								}
 
-								
+
+							Using Annoymous Class : 
+								public class ThreadDemo implements Runnable{
+								        public void run(){
+								                for(int i=0;i<5000;i++){
+								                        System.out.println(i);
+								                }
+								        }
+								}
+								class ThreadMain{
+								        public static void main(String[]args){
+								                //Runnable r = new ThreadDemo();
+								                //Thread t1 = new Thread(r);
+								                Thread t1 = new Thread(new ThreadDemo(){
+								                        public void run(){
+								                                for(int i=0;i<500;i++){
+								                                        System.out.println(i);
+								                                }
+								                        }
+								                });
+								                //Thread t2 = new Thread(r);
+								                Thread t2 = new Thread(new ThreadDemo(){ 
+								                        public void run(){
+								                                for(int i=0;i<500;i++){
+								                                        System.out.println(i);
+								                                }
+								                        }
+								                });
+								                t1.start();
+								                t2.start();
+								        }
+								}
+
+
+
+							Using Thread Class :
+
+									public class ThreadDemo1 extends Thread{
+									        public void run(){
+									                for(int i=0;i<5000;i++){
+									                        System.out.println(i);
+									                }
+									        }
+									}
+									class ThreadMain{
+									        public static void main(String[]args){
+									                Thread t1 = new ThreadDemo1();
+									                Thread t2 = new ThreadDemo1();
+									                t1.start();
+									                t2.start();
+									        }
+									}
+
+						### Life Cycle of a thread :
+
+
+											--<---Blocked.
+											|		|
+								New -> Runnable -> Running -> End/Dead/Terminated
+											|		|
+											--<---IO Wait.
+
+
+											
