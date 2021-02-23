@@ -1484,5 +1484,29 @@ CLASS       When Class is     not             not                 not           
 
 
 
+						###Multithreading :
+							Thread : Execution of a process.
+
+							Context Switching : When an Current Process is maintained and then new process is loaded,after new process is being excuted,
+												then maintained previous process is being loaded into processor.
 
 
+
+								public class ThreadDemo implements Runnable{
+									public void run(){
+										for(int i=0;i<5000;i++){
+											System.out.println(i);
+										}
+									}
+								}
+								class ThreadMain{
+									public static void main(String[]args){
+										Runnable r = new ThreadDemo();
+										Thread t1 = new Thread(r);
+										Thread t2 = new Thread(r);
+										t1.start();
+										t2.start();
+									}
+								}
+
+								
