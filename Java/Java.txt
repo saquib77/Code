@@ -1580,5 +1580,48 @@ CLASS       When Class is     not             not                 not           
 					 [	Java File ] <---> [ JAVA Client API | JAVA Server API ] <---> [ mysqld ]
 
 
-					
+					Step 1 : Add Server API in build path of the project.
+
+					Step 2 : To Use client API in Project import java.sql.*;
+
+					Step 3 : Register Server API with client API
+
+								try {
+									Class.forName("com.mysql.jdbc.Driver");
+									String url="jdbc:mysql://localhost:3306/test"
+									String uname="root";
+									String pass="Saquib@77";
+								}catch(ClassNotFoundException cnf){
+									cnf.printStackTrace();
+								}
 							
+					Step 4 : Create 3 String Corresponding database url,uname & pass.
+
+					Step 5 : Establish Connection with DB Server.
+
+							Connection con = DriverManager.getConnection(url,uname,pass);
+
+
+						try {
+						Class.forName("com.mysql.cj.jdbc.Driver");
+						String url="jdbc:mysql://localhost:3306/test";
+						String uname="root";
+						String pass="Saquib@77";
+						Connection con = DriverManager.getConnection(url, uname, pass);
+						Statement st = con.createStatement();
+						String qry = "create table jdbc_demo(id int(10) primary key,name char(20))";
+						st.execute(qry);
+						}catch(ClassNotFoundException cnf){
+						cnf.printStackTrace();
+						}catch(SQLException cnf) {
+						cnf.printStackTrace();
+						}
+
+
+					Step 6: get ref of statement 
+
+
+					Step 8 : Write a query
+
+
+					Steo 9 : fire query
