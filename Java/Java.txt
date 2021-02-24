@@ -1572,4 +1572,13 @@ CLASS       When Class is     not             not                 not           
 											--<---IO Wait.
 
 
+
+
+
+					###JDBC(Java Database Connectivity)
+
+					 [	Java File ] <---> [ JAVA Client API | JAVA Server API ] <---> [ mysqld ]
+
+
+					
 							
