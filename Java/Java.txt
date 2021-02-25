@@ -1619,9 +1619,95 @@ CLASS       When Class is     not             not                 not           
 
 
 					Step 6: get ref of statement 
-
+								Statement st = con.createStatement();
 
 					Step 8 : Write a query
-
+								String qry = "create table jdbc_demo(id int(10) primary key,name char(20))";
 
 					Steo 9 : fire query
+								st.execute(qry);
+
+
+
+
+
+				### Getting Data from Mysql using JDBC
+
+						package MyPkg;
+						import java.sql.*;
+						public class DbDemo {
+
+							public static void main(String[] args) {
+								try {
+									Class.forName("com.mysql.cj.jdbc.Driver");
+									String url="jdbc:mysql://localhost:3306/test";
+									String uname="root";
+									String pass="Saquib@77";
+									Connection con = DriverManager.getConnection(url, uname, pass);
+									Statement st = con.createStatement();
+									String qry = "select id,name from jdbc_demo";
+									ResultSet rs = st.executeQuery(qry);
+									while(rs.next()) {
+										System.out.println(rs.getInt(1)+" "+rs.getString(2));
+									}
+								}catch(ClassNotFoundException cnf){
+									cnf.printStackTrace();
+								}catch(SQLException cnf) {
+									cnf.printStackTrace();
+								}
+								
+							}
+
+						}
+
+
+					##DbDemo.java
+
+						package MyPkg;
+						import java.sql.*;
+						public class DbDemo {
+
+							public static void main(String[] args) {
+								try {
+									Class.forName("com.mysql.cj.jdbc.Driver");
+									String url="jdbc:mysql://localhost:3306/test";
+									String uname="root";
+									String pass="Saquib@77";
+									DbBean db=new DbBean();
+									Statement st = db.createConnection(url,uname,pass);
+									String qry= "select id,name from jdbc_demo";
+									ResultSet rs = db.selectData(st,qry);
+									while(rs.next()) {
+										System.out.println(rs.getString(1)+" "+rs.getString(2));
+									}
+								}catch(ClassNotFoundException cnf){
+									cnf.printStackTrace();
+								}catch(SQLException cnf) {
+									cnf.printStackTrace();
+								}
+								
+							}
+						}
+
+
+
+					##DbBean.java 
+
+						package MyPkg;
+						import java.sql.*;
+						public class DbBean {
+							
+							public Statement createConnection(String url, String uname, String pass ) throws ClassNotFoundException,SQLException {
+								Class.forName("com.mysql.cj.jdbc.Driver");
+								Connection con = DriverManager.getConnection(url, uname, pass);
+								return con.createStatement();
+							}
+							public boolean insertData(Statement st,String qry) throws SQLException{
+								return st.execute(qry);
+							}
+							public ResultSet selectData(Statement st,String qry) throws SQLException{
+								return st.executeQuery(qry);
+							}
+							
+						}
+
