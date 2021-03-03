@@ -1800,4 +1800,44 @@ CLASS       When Class is     not             not                 not           
 
 					
 
+					##Reflection : 
+						* It is a mechanism to analyze compiled class at runtime.
+						* Class is a class in java.lang.Class package.
+						* 	
 
+
+						package refPkg;
+						class Reflect{
+						        void printer(){
+						                System.out.println("Printer of Reflect Class");
+						        }
+						        void display(){
+						                System.out.println("Display of Reflect Class");
+						        }
+						}
+
+
+
+						package refPkg;
+						class Reflect1{
+						        public static void main(String[]args){
+						                try{
+						                        Class c = Class.forName("refPkg.Reflect");
+						                        Reflect r = (Reflect)c.newInstance();
+						                        r.printer();
+						                }catch(Exception e){
+						                        e.printStackTrace();
+						                }
+						        }
+						}
+
+
+
+						package refPkg;
+						class Reflect1{
+						        public static void main(String[]args){
+						 			Reflect r = new Reflect();
+						 			Class ca = r.getClass();
+						 			System.out.println(ca.getName());              
+						        }
+						}
