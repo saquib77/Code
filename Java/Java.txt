@@ -1876,4 +1876,255 @@ CLASS       When Class is     not             not                 not           
 						}
 					-----------------------------------------------------------------------------
 
+				## Get Access Modifiers : 
+					import java.lang.reflect.*;
+					class ReflectDemoMain{
+					        public static void main(){}     
+					        public static void demo(){}
+					}
 
+					class ReflectDemo2{
+					        public static void main(String[]args){
+					                Class cr = ReflectDemoMain.class;
+					                Method[] m = cr.getDeclaredMethods();
+					                int mod = m[0].getModifiers();
+					                System.out.println(mod);
+					                String s = (Modifier.toString(mod));
+					                System.out.println(s);
+					        }
+					}
+
+
+
+						import java.lang.reflect.*;
+						class ReflectDemoMain{
+						        private static void demo(int a,String s) throws Exception{}
+						}
+
+						class ReflectDemo2{
+						        public static void main(String[]args){
+
+						                Class cr = ReflectDemoMain.class;
+						                Method[] m = cr.getDeclaredMethods();
+						                int mod = m[0].getModifiers();
+
+						                String s = (Modifier.toString(mod));
+						                String s1 = m[0].getName();
+
+						                Class rt = m[0].getReturnType();
+						                Class[] pm = m[0].getParameterTypes();
+						                Class[] nm = m[0].getExceptionTypes();
+						                System.out.println("class "+cr.getName()+" {");
+						                System.out.print("\t"+s+" "+rt.getName()+" "+s1+" (");
+						                System.out.print(pm[0].getName()+", ");
+						                System.out.print(pm[1].getName()+" ");
+						                System.out.print(") throws ");
+						                System.out.print(nm[0].getName()+" ");
+						                System.out.println("{}");
+						                System.out.println("}");
+						        }
+
+						}
+
+
+
+
+							import java.util.*; 
+							class FactoryMethodGenralized{
+							        static HashMap<String,Object> hm = new HashMap<>();
+							        synchronized public static Object getInstance(String s) throws Exception{
+							                Object obj = hm.get(s);
+							                if(obj != null ) return obj;
+							                else{
+							                        Class cl = Class.forName(s);
+							                        obj = cl.newInstance();
+							                        hm.put(s,obj);
+							                }
+							                return obj;
+							        }
+							        public static void main(String[] args){
+							                try{
+							                        String s = (String)FactoryMethodGenralized.getInstance("java.lang.String");
+							                }catch(Exception e){}
+							        }
+							}
+
+
+
+							###Generics : 
+
+								class MyClass 	<T>{
+									T t;
+								}
+								class MyMain{
+									public static void main(String[] args){
+										MyClass<Integer> m =new MyClass<Integer>();
+										m.t=20;
+										int k = m.t.intValue();
+										System.out.println(k);
+									}
+								}
+
+
+								class MyClass  {
+								        public static <T> String getLength(T t){
+								                return t.toString();
+								        }
+								}
+								class MyMain{
+								        public static void main(String[] args){
+								                String k = MyClass.<String>getLength("Lucknow");
+								                System.out.println(k);
+								        }
+								}
+																	Optional
+																	|
+							## -> MyClass<Integer> m =new MyClass<Integer>();
+
+
+								import java.util.*;
+								class ColApi{
+								        public static void main(String[]args){
+								                ArrayList al = new ArrayList();
+								                al.add(30);
+								                al.add(3.5f);
+								                al.add("Lucknow");
+								                int y = ((Integer)al.get(0)).intValue();
+								                Object obj = al.get(2);
+								                System.out.println(y+" "+obj);
+								        }
+								}
+
+
+
+
+						### Assertion : 
+
+							class assertionDemo{
+							        public static void main(String[] args){
+							                int x = -10;
+							                assert x>=0 : "X must be Greater then 0";
+							                double d = Math.sqrt(x);
+							                System.out.println(d);
+							        }
+							}
+
+						To Run || To Enable : 
+							For Class Loader : 	java -ea assertionDemo || java -enableassertions assertionDemo
+							For JVM :			java -esa assertionDemo || java -enablesystemassertions assertionDemo
+
+						To Disable : 
+							For Class Loader :	java -da assertionDemo || java -disableassertions assertionDemo
+							For JVM :			java -esa assertionDemo || java -enablesystemassertions assertionDemo
+
+
+
+				##	Throwable class extends Object class, and Error & Exception extends Throwable 
+
+						and Error  & IOExceptiob Class comes under unchecked Exception
+
+						else all are comes under Checked Exception. 
+
+
+					java -ea : mypkg... mpkg.MyClass 
+
+					java -ea... MyClass
+
+
+
+				###Logging : Mechanism to Store or display activity of particular process.
+
+					Havig two types : Logger & Handler
+
+						* Logger : it generates the Log of process.
+						* Handler : it Handels the Log Generated by Logger and store into file , Console & Database.  
+
+					* Level of Logging in Java: 
+
+							1) Severe		|
+											|
+							2) Warning      |  Are Default level of Logging
+											|
+							3) Info         |
+
+							4) Config    
+
+							5) Fine
+
+							6) Finner
+
+							7) Finest
+
+
+
+
+						import java.util.logging.*;
+						class Loggr{
+						        public static void main(String[]args){
+						                Logger.getGlobal().info("My First Log");
+						        }
+						}
+
+
+
+						import java.util.logging.*;
+						class Loggr{
+						        public static void main(String[]args){
+						                Logger log = Logger.getGlobal();
+						                log.setLevel(Level.INFO);
+						                log.info("My First Log");
+						        }
+						}
+
+
+					Output : 
+						Mar 11, 2021 12:33:46 PM Loggr main
+						INFO: Second Log
+
+
+
+				import java.util.logging.*;
+				class Loggr{
+				        public static void main(String[]args){
+				                Logger logg = Logger.getLogger("abc.xyz");
+				                logg.setLevel(Level.WARNING);
+				                logg.warning("This is First Warning");
+				                Logger logg1 = Logger.getLogger("abc.xyz.acb");
+				                logg1.warning("This is Second Warning");
+				        }
+				}
+
+
+				import java.util.logging.*;
+				class Loggr{
+				        public static void main(String[]args){
+				                Logger logg = Logger.getLogger("abc.xyz");
+				                logg.setLevel(Level.WARNING);
+				                logg.warning("This is First Warning");
+				                Logger logg1 = Logger.getLogger("abc.xyz");
+				                logg1.info("This is Second Warning");
+				                if(logg==logg1) System.out.println("Same");
+				        }
+				}
+
+
+				/usr/lib/jvm/java-11-openjdk-amd64/conf -> nano logging.properties (File where all the default properties are set for Logging).
+
+
+
+				import java.util.logging.*;
+				class Loggr{
+				        public static void main(String[]args){
+				                Logger logg = Logger.getLogger("abc.xyz");
+				                logg.log(Level.FINE,"FIrst Fine Level Log");
+				        }
+				}
+
+				Create a new .properties File in same directory.
+
+				#For Handler
+				handlers=java.util.logging.FileHandler
+				.level = FINE
+
+				#For Logger
+				java.util.logging.FileHandler.level = FINE
