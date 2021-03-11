@@ -2123,7 +2123,7 @@ CLASS       When Class is     not             not                 not           
 				Create a new .properties File in same directory.
 
 				#For Handler
-				handlers=java.util.logging.FileHandler
+				handlers=java.util.logging.FileHandler,java.util.logging.ConsoleHandler
 				.level = FINE
 
 				#For Logger
