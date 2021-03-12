@@ -1,0 +1,19 @@
+import java.util.logging.*;
+class Loggr{
+	public static void main(String[]args){
+		Logger logg = Logger.getLogger("abc.xyz");
+		logg.setLevel(Level.WARNING);
+		logg.warning("This is First Warning");
+		Logger logg1 = Logger.getLogger("abc.xyz.acb");
+		logg1.warning("This is Second Warning"import java.util.logging.*;
+class Loggr{
+        public static void main(String[]args){
+                Logger logg = Logger.getLogger("abc.xyz");
+                logg.setLevel(Level.WARNING);
+                logg.warning("This is First Warning");
+                Logger logg1 = Logger.getLogger("abc.xyz.acb");
+                logg1.warning("This is Second Warning");
+        }
+});
+	}
+}

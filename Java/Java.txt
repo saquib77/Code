@@ -2128,3 +2128,86 @@ CLASS       When Class is     not             not                 not           
 
 				#For Logger
 				java.util.logging.FileHandler.level = FINE
+
+
+
+				## File Handling  
+
+				To Create Directory : 
+
+					import java.io.*;
+					class fileDemo{
+					        public static void main(String[]args){
+					                String H = System.getProperty("user.home");
+					                String sep = File.separator;
+					                File f = new File(H+sep+"fileDemo"+sep+"dirs");
+					                f.mkdirs();
+					        }
+					}
+
+
+				To Create Files
+
+					import java.io.*;
+					class fileDemo{
+					        public static void main(String[]args){
+					                String H = System.getProperty("user.home");
+					                String sep = File.separator;
+					                File f = new File(H+sep+"fileDemo");
+					                try{
+					                        f.createNewFile();
+					                }catch(IOException ioe){
+					                        ioe.printStackTrace();
+					                }
+					        }
+					}
+
+
+				To Read Data From a File :
+
+					import java.io.*;
+					class fileDemo{
+					        public static void main(String[]args){
+					                String H = System.getProperty("user.home");
+					                String sep = File.separator;
+					                File f = new File(H+sep+"fileDemo"+sep+"fileText.txt"); 
+					                try{
+					                        FileInputStream fis = new FileInputStream(f);
+					                        int data=0;
+					                        while((data=fis.read())!=-1){
+					                                System.out.print((char)data);
+					                        }
+					                        fis.close();
+					                }catch(IOException ioe){
+					                        ioe.printStackTrace();
+					                }
+					        }
+					}
+
+
+
+				To Write Data into File : 
+
+					import java.io.*;
+					import java.util.*;
+					class fileDemo{
+					        public static void main(String[]args){
+					                String H = System.getProperty("user.home");
+					                String sep = File.separator;
+					                File f = new File(H+sep+"fileDemo"+sep+"fileText.txt");
+					                Scanner sc = new Scanner(System.in);
+					                try{
+					                        char data;
+					                        FileOutputStream fos = new FileOutputStream(f);
+					                        while((data=sc.next().charAt(0))!='#') {
+					                                fos.write(data);
+					                        }
+					                        fos.close();
+					                }catch(IOException ioe){
+					                        ioe.printStackTrace();
+					                }
+					        }
+					}
+
+
+					
