@@ -2236,10 +2236,12 @@ CLASS       When Class is     not             not                 not           
 						                try{
 						                        FileInputStream fis = new FileInputStream(f1);
 						                        FileOutputStream fos = new FileOutputStream(f2);
-						                        int  b;
+						                        int  b,count=0;
 						                        while((b=fis.read())!=-1){
 						                                fos.write(b);
+						                                count=count+1;
 						                        }
+						                        System.out.println(count/1024 +" Kb");
 						                        fos.close();
 						                }catch(Exception e){
 						                        e.printStackTrace();
@@ -2248,4 +2250,149 @@ CLASS       When Class is     not             not                 not           
 						}
 
 
-						
+
+
+
+					## ToCopy Image Using BufferedInputStream & BufferedOutputStream
+
+						import java.io.*;
+						import java.util.*;
+						class ImageCopy{
+						        public static void main(String[]args){
+						                File f1 = new File("myimg.jpg");
+						                File f2 = new File("myimgcpy.jpg");
+						                try{
+						                        FileInputStream fis = new FileInputStream(f1);
+						                        BufferedInputStream bis = new BufferedInputStream(fis,1024);
+						                        FileOutputStream fos = new FileOutputStream(f2);
+						                        BufferedOutputStream bos = new BufferedOutputStream(fos,1024);
+						                        int  b,count=0;
+						                        while((b=bis.read())!=-1){
+						                                bos.write(b);
+						                                count=count+1;
+						                        }
+						                        System.out.println(count/1024 +" Kb");
+						                        bos.close();
+						                }catch(Exception e){
+						                        e.printStackTrace();
+						                }
+						        }
+						}
+
+
+				#Serializable : 
+
+
+					MyClass.class -----> Class Loader ------> Method area ------> Heap Memory ------> Stack .
+
+
+					import java.io.*;
+					class MyClass implements Serializable {
+					        private int age;
+					        public MyClass(int x){ age=x; }
+					        public String toString(){ return "Age is "+age; }
+					}
+
+					import java.io.*;
+					class SerialDemo{
+					        public static void main(String[]args){
+					                MyClass m = new MyClass(20);
+					                try{
+					                        FileOutputStream fos = new FileOutputStream("abc.dat");
+					                        ObjectOutputStream os = new ObjectOutputStream(fos);
+					                        os.writeObject(m);
+					                        FileInputStream fis = new FileInputStream("abc.dat");
+					                        ObjectInputStream is = new ObjectInputStream(fis);
+					                        MyClass m1 = (MyClass) is.readObject();
+					                        System.out.println(m1.toString());
+					                }catch(Exception e){
+					                        e.printStackTrace();
+					                }
+					        }
+					}
+
+
+					* Here , Object (m) and (m1) is diffrent , where object is read from abc.dat
+
+				Non-Access Modifier --->  Transient , When transient private int age; 
+								then the state of the variable does'nt write in a file or can't transmit the state of the variable.
+
+
+
+
+						## Data Input Stream :  to get the data from keyboard.
+
+							import java.io.*;
+							class DataFileInput{
+							        public static void main(String[]args){
+							                try{
+							                        DataInputStream di = new DataInputStream(System.in);
+							                        String in = di.readLine();
+							                        File fis = new File("data.txt");
+							                        FileOutputStream os=new FileOutputStream(fis);
+							                        DataOutputStream dos=new DataOutputStream(os);
+							                        dos.writeBytes(in);
+							                        dos.close();
+							                }catch(Exception e){
+							                        e.printStackTrace();
+							                }
+							        }
+							}
+
+
+				
+
+					##Creating Pdf Using JAVA
+
+						import com.itextpdf.*;
+						import com.itextpdf.text.*;
+						import com.itextpdf.text.pdf.*;
+						import java.io.*;
+						public class MyPdfGen {
+							public static void main(String[] args) {
+								try {
+									Document doc = new Document();
+									doc.setPageSize(PageSize.A4);
+									doc.setMargins(36,72,108,180);
+									doc.setMarginMirroring(true);
+									String home = System.getProperty("user.home");
+									String sep = File.separator;
+									File f = new File(home+sep+"mydemo.pdf");
+									FileOutputStream fos = new FileOutputStream(f);
+									PdfWriter writer = PdfWriter.getInstance(doc, fos);
+									doc.open();
+									doc.add(new Paragraph("This is My First Pdf Using iText API"));
+									doc.close();
+								}catch(Exception e) {
+									e.printStackTrace();
+								}
+							}
+						}
+
+
+				##Collection API  																	 ------> TreeSet<E>
+																						Implements   |
+									 Extends				    	Extends		Set<E> -----------------------> HashSet<E>
+						Iterator<E> ---------------> Collection<E> ------------>List<E>	----------------------> ArrayList<E>
+																                Queue<E> ---------------------> PriorityQueue<E>
+
+														     	Implements
+													Map<K,V> --------------->HashMap<K,V>
+
+
+
+						import java.util.*;
+						import java.lang.*;
+						class Arrlis{
+						        public static void main(String[]args){
+						                Collection<String> c = new ArrayList<>();
+						                c.add("Jhon");
+						                c.add("Damon");
+						                c.add("Stefan");
+						                Iterator it = c.iterator();
+						                while(it.hasNext()){
+						                        System.out.println(it.next());
+						                }
+						        }
+						}
+
