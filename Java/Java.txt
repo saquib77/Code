@@ -2370,7 +2370,8 @@ CLASS       When Class is     not             not                 not           
 						}
 
 
-				##Collection API  																	 ------> TreeSet<E>
+				##Collection API : The Collection API is a set of classes and interfaces that support operation on collections of objects.
+																									 ------> TreeSet<E>
 																						Implements   |
 									 Extends				    	Extends		Set<E> -----------------------> HashSet<E>
 						Iterator<E> ---------------> Collection<E> ------------>List<E>	----------------------> ArrayList<E>
@@ -2389,10 +2390,116 @@ CLASS       When Class is     not             not                 not           
 						                c.add("Jhon");
 						                c.add("Damon");
 						                c.add("Stefan");
-						                Iterator it = c.iterator();
+						                /*Iterator it = c.iterator();
 						                while(it.hasNext()){
-						                        System.out.println(it.next());
+						                		String s = (String)it.next();
+						                        System.out.println(s);
+						                }*/
+						                for(String s : c){
+						                	System.out.println(s);
 						                }
 						        }
 						}
 
+
+						import java.util.*;
+						import java.lang.*;
+						class Arrlis1{
+						        public static void main(String[]args){
+						                ArrayList<String> c = new ArrayList<>();
+						                c.add("Jhon");
+						                c.add("Damon");
+						                c.add("Stefan");
+						                if(c instanceof RandomAccess){
+						                        for(int i=0;i<c.size();i++){
+						                                System.out.println(c.get(i));
+						                        }
+						                }else System.out.println("False");
+						        }
+						}
+
+
+
+						import java.util.*;
+						import java.lang.*;
+						class Arrlis1{
+						        public static void main(String[]args){
+						                LinkedList<String> c = new LinkedList<>();
+						                c.add("Jhon");
+						                c.add("Damon");
+						                c.add("Stefan");
+						                if(c instanceof RandomAccess){
+						                        for(int i=0;i<c.size();i++){
+						                                System.out.println(c.get(i));
+						                        }
+						                }else {
+						                        for(int i=0;i<c.size();i++){
+						                                System.out.println(c.get(i));
+						                        }
+						                }
+						        }
+						}
+
+
+						
+
+						##Legacy Classes  : 
+
+							1) Vector						//These Methods are SYNCHRONISED or THREAD SAFE.
+							2) HashTable
+							3) Properties
+							4) Enumuration
+							5) Stack 	
+
+
+							Enumeration :
+
+								import java.util.*;
+								class vectDemo{
+								        public static void main(String[]args){
+								                Vector<Integer> v1 = new Vector<Integer>();
+								                v1.add(10);
+								                v1.add(20);
+								                v1.add(30);
+								                Vector<Integer> v = new Vector<Integer>(v1);
+								                Enumeration<Integer> e = v1.elements();
+								                while(e.hasMoreElements()){
+								                        System.out.println(e.nextElement());
+								                }
+								        }
+								}
+
+
+							Stack : 
+
+							import java.util.*;
+							class stakDemo{
+							        public static void main(String[]args){
+							                Stack<String> s = new Stack<>();
+							                s.push("Lucknow");
+							                s.push("Kanpur");
+							                s.push("Delhi");
+							                while(!s.empty()){
+							                        System.out.println(s.pop());
+							                }
+							        }
+							}
+
+
+							Hashtable : 
+
+								import java.util.*;
+								class htDemo{
+								        public static void main(String[]args){
+								                Hashtable<String,String> ht = new Hashtable<>();
+								                ht.put("name","Saquib");
+								                ht.put("College","Integral");
+								                ht.put("City","Lucknow");
+								                System.out.println("Name : "+ht.get("name"));
+								                System.out.println("College : "+ht.get("College"));
+								                System.out.println("City : "+ht.get("City"));
+								        }
+								}
+
+
+								

@@ -1,0 +1,12 @@
+import java.util.*;
+import java.lang.*;
+class Arrlis1{
+	public static void main(String[]args){
+		Collection<String> c = new ArrayList<>();
+		c.add("Jhon");
+		c.add("Damon");
+		c.add("Stefan");
+		if(c instanceof ) System.out.println("True");
+		else System.out.println("False");
+	}
+}
