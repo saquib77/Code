@@ -1,0 +1,6 @@
+Enumeration<String> e = (Enumeration<String>) prop.propertyNames();
+                        while(e.hasMoreElements()) {
+                                String key = e.nextElement();
+                                String value = prop.getProperty(key);
+                                System.out.println(key + " : " + value);
+                        }

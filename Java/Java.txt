@@ -2621,4 +2621,159 @@ CLASS       When Class is     not             not                 not           
 
 								HashMap in Java : 
 
-									
+											  -----> HashMap : Unsorted and Stored on the basis of hashfunction f(n).
+											  |	
+									Map -----> 
+											  |
+											  -----> TreeMap : Sorted and Stored on the basis of Key and in Increasing Order of the key.
+
+
+
+								import java.util.*;
+								class mapDemo{
+								        public static void main(String[]args){
+								                HashMap<Integer,String>hm = new HashMap<Integer,String>();
+								                hm.put(1,"Mahesh");
+								                hm.put(2,"Suresh");
+								                hm.put(3,"kalpesh");
+								                for(int i=1;i<=hm.size();i++){
+								                        System.out.println(i+" "+hm.get(i));
+								                }
+								        }
+								}
+
+
+							Using Iterator we are Getting Values in Set and Map : 
+
+								import java.util.*;
+								class mapDemo{
+								        public static void main(String[]args){
+								                HashMap<Integer,String>hm = new HashMap<Integer,String>();
+								                hm.put(8,"Mahesh");
+								                hm.put(7,"Suresh");
+								                hm.put(6,"kalpesh");
+								                hm.put(5,"Saquib");
+								                hm.put(4,"Mujeeb");
+								                hm.put(3,"Udbhav");
+								                hm.put(2,"Junaid");
+								                hm.put(1,"Rishav");
+								/*              for(int i=1;i<=hm.size();i++){
+								                        System.out.println(i+" "+hm.get(i));
+								                }*/
+								                /*Collection<String> k = hm.values();
+								                for(String i : k){
+								                        System.out.println(i);
+								                }*/
+
+								/*              Set<Map.Entry<Integer,String>> sme = hm.entrySet();
+								                for(Map.Entry<Integer,String> i : sme){
+								                        System.out.println(i.getKey()+" "+i.getValue());
+								                }*/
+
+								                Set<Integer>s=hm.keySet();
+								                Iterator it = s.iterator();
+								                while(it.hasNext()){
+								                        System.out.println(hm.get(it.next()));
+								                }
+								        }
+								}
+
+
+						employee.properties 
+
+							Mahesh  = /home/saquib/Code/Java/Collection/prop
+							Suresh = /home/saquib/Code/Java/Collection/prop
+							Kamal = /home/saquib/Code/Java/Collection/prop
+							Rishav = /home/saquib/Code/Java/Collection/prop
+
+						miniProjDemo.java
+
+							import java.util.*;
+							import java.io.*;
+							class miniProjDemo{
+							        public static void main(String[]args){
+							                Properties prop = new Properties();
+							                String home = System.getProperty("user.home");
+							                String pth = "/Code/Java/Collection/";
+							                File f = new File(home+pth+"employee.properties");
+							                HashMap<String,Integer> hm = new HashMap<String,Integer>();
+
+							                try{
+							                        FileInputStream fis = new FileInputStream(f);
+							                        prop.load(fis);
+							                        Enumeration<String> e = (Enumeration<String>) prop.propertyNames();
+							                        while(e.hasMoreElements()) {
+							                                String name = e.nextElement();
+							                                String  filePth = prop.getProperty(name);
+							                                File f1 = new File(filePth+"/"+name+".properties");
+							                                FileInputStream fis1 = new FileInputStream(f1);
+							                                prop.load(fis1);
+							                                String cty = prop.getProperty("City");
+							                                if(hm.get(cty)!=null){
+							                                        hm.put(cty,hm.get(cty)+1);
+							                                }else{
+							                                        hm.put(cty,1);
+							                                }
+							                        }
+
+							                        hm.forEach((k,v)->{
+							                                System.out.println(k+" "+v);
+							                        });
+
+							                }catch(Exception e){
+							                        e.printStackTrace();
+							                }
+							        }
+							}
+
+
+
+						GetName of the City Input : 
+
+
+							import java.util.*;
+							import java.io.*;
+							class miniProjDemo{
+							        public static void main(String[]args){
+							                Properties prop = new Properties();
+							                String home = System.getProperty("user.home");
+							                String pth = "/Code/Java/Collection/";
+							                File f = new File(home+pth+"employee.properties");
+							                //HashMap<String,Integer> hm = new HashMap<String,Integer>();
+							                ArrayList<String> employeeName = new ArrayList<String>();
+							                Scanner sc = new Scanner(System.in);
+							                try{
+							                        FileInputStream fis = new FileInputStream(f);
+							                        prop.load(fis);
+							                        System.out.print("Enter the City Name To Get Member : ");
+							                        String cty = sc.nextLine();
+							                        Enumeration<String> e = (Enumeration<String>) prop.propertyNames();
+							                        while(e.hasMoreElements()) {
+							                                String name = e.nextElement();
+							                                String  filePth = prop.getProperty(name);
+							                                File f1 = new File(filePth+"/"+name+".properties");
+							                                FileInputStream fis1 = new FileInputStream(f1);
+							                                prop.load(fis1);
+							                                String EmpCty = prop.getProperty("City");
+							                                if(cty.equals(EmpCty)){
+							                                        String empName = prop.getProperty("Name");
+							                                        employeeName.add(empName);
+							                                }
+							                        }
+
+							                        for(String i : employeeName){
+							                                System.out.println(i);
+							                        }
+
+							                }catch(Exception e){
+							                        e.printStackTrace();
+							                }
+							        }
+							}
+
+
+
+
+
+
+							
