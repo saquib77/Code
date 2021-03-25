@@ -13,5 +13,6 @@ int main(){
 	system(msg);
 	system("git push origin main");
 	system("clear");
+	cout<<"Successfully Uploaded File & Directory to GitHub"<<endl;
 	return 0;
 }
