@@ -2774,6 +2774,44 @@ CLASS       When Class is     not             not                 not           
 
 
 
+							how to make symbol table :
+
+								gcc -o sy -Wa,-as=symbol.sym,-L symbol.c
+
+
+
+						Queue && PriorityQueue :
+
+							In Queue :
+
+							public abstract boolean add(E);  ---> if not added it will throw exception 							
+							public abstract boolean offer(E);   ----> return false if now added
+
+							public abstract E remove();		-----> throw exception if not removed
+							public abstract E poll();		-----> 
+
+							public abstract E element();
+							public abstract E peek();
+
+
+
+							import java.util.*;
+							class pQue{
+							        public static void main(String[]args){
+							                Queue<String> q = new PriorityQueue<>();
+							                q.offer("Lucknow");
+							                q.offer("Kanpur");
+							                q.offer("Delhi");
+							                Iterator<String> it = q.iterator();
+							                while(it.hasNext()){
+							                        System.out.println(it.next());
+							                }
+							                System.out.println();
+							        }
+							}
+
+
+
 
 
 							
