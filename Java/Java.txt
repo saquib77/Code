@@ -2815,3 +2815,26 @@ CLASS       When Class is     not             not                 not           
 
 
 							
+						## In Java Main Class Can be Overloaded.
+
+							class A{
+						        public static void main(String[]args){
+					                A a = new A();
+					                int y = a.main(2);
+					                System.out.println(y);
+						        }
+						        int main(int x){
+						            return x*x;
+						        }
+							}
+
+
+							Function & Method 
+
+								if a function is in class then it is called METHOD.
+
+								else it is called Function.
+
+
+
+						
