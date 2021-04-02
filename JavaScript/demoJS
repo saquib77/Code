@@ -1,0 +1,45 @@
+JavaScript is Dynamiclly Typed Language||Type Less .
+JavaScript is also called as ECMAScript.
+
+It is Used to make the behaviour of web app to dynamic.
+
+	Web Pages : 
+
+		1. Static.
+		2. Dynamic.
+
+#Binding : 
+
+	function : 
+
+		1)
+
+			let sqr = function(x){  		// sqr(2)->4;
+ 				return x*x;
+			};
+		2)
+
+			function sqr(x){  		// sqr(2)->4;
+ 				return x*x;
+			}
+
+		3)
+
+			let x = (a) => { return a*a; };		//x(2)->4;
+
+		4)
+
+			let x = a => a*a;			//x(2) -> 4;
+
+
+
+		function of function : 
+
+				let a = function(x){
+				    let b = function(y,z){
+				        return x+y+z;
+				    };
+				    return b(y,z);
+				};
+
+		
