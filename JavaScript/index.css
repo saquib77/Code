@@ -1,0 +1,40 @@
+div{
+	border: 1px black solid;
+}
+#main_div{
+	margin: 0px auto;
+	height: 920px;
+	width: 1900px;
+}
+#header{
+	margin: 1px;
+	height: 300px;
+	width: 1896px;
+	/*border: 1px gray solid;	*/
+}
+#body_div{
+	margin: 1px;
+	height: 300px;
+	width: 1896px;
+	/*border: 1px gray solid;*/
+}
+#left_block{
+	margin: 1px;
+	height: 296px;
+	width: 500px;
+	/*border: 1px gray solid;	*/
+	float: left;
+}
+#main_area{
+	margin: 1px;
+	height: 296px;
+	width: 1386px;
+	/*border: 1px gray solid;		*/
+	float: right;
+}
+#fotter{
+	margin: 1px;
+	height: 309px;
+	width: 1896px;
+	/*border: 1px gray solid;	*/
+}

@@ -1,0 +1,10 @@
+$make
+make[1]: Entering directory '/usr/scr/linux-headers-5.4.0-70'
+  CC = gcc
+  CFLAG = -g -Wall
+  TARGET = hello_init
+  all:$(TARGET)
+  $(TARGET):$(TARGET).c
+	$(CC) $(CFLAG) -o $(TARGET) $(TARGET).c
+  clean : 
+	$(RM) $(TARGET)

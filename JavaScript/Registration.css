@@ -1,0 +1,24 @@
+#main_area{
+    height: 500px;
+    width: 400px;
+    border: 1px black solid;
+    margin: 0px auto;
+}
+li{
+    list-style:none;
+    margin-top: 5px;
+}
+.ff{
+    height: 30px;
+    width: 300px;
+    border: 1px gray solid;
+}
+a{
+    text-decoration : none;
+}
+a:hover{
+    color: blueviolet;
+}
+img{
+    float: initial;
+}

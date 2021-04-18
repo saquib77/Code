@@ -1,0 +1,57 @@
+*{
+	font-family: fantasy;
+	font-size: 15px;
+}
+div{
+	border: 1px black solid;
+}
+#main_div{
+	margin: 0px auto;
+	height: 920px;
+	width: 1900px;
+}
+#header{
+	margin: 1px;
+	height: 300px;
+	width: 1896px;
+}
+#body_div{
+	margin: 1px;
+	height: 300px;
+	width: 1896px;
+}
+#left_block{
+	margin: 1px;
+	height: 296px;
+	width: 625px;
+	float: left;
+}
+#center_block{
+	margin: 1px;
+	height: 296px;
+	width: 634px;
+	float: left;
+}
+#right_block{
+	margin: 1px;
+	height: 296px;
+	width: 625px;
+	float: right;
+}
+#fotter{
+	margin: 1px;
+	height: 309px;
+	width: 1896px;
+}
+#left_block1{
+	margin: 1px;
+	height: 304px;
+	width: 944px;
+	float: left;
+}
+#right_block1{
+	margin: 1px;
+	height: 304px;
+	width: 944px;
+	float: right;
+}
