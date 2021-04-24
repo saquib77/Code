@@ -7,7 +7,7 @@ int fibDp(int n){
 	for(int i=2;i<=n;i++){
 		ar[i]=ar[i-1]+ar[i-2];
 	}
-	return ar[n];
+		return ar[n];
 }
 int fibRec(int n){
 	return (n==0||n==1)?n:fibRec(n-1)+fibRec(n-2);

@@ -1,0 +1,10 @@
+GET:
+	1. To send request using GET method of HTTP, We have to use doGet method of HttpServlet. 
+	2. Data sent using GET method are sent as query string, which are visible in browser's address bar.
+	3. http://localhost:8080/myproject/nyservlet?fn-basheer&ln-ahmad&location=lucknow 
+	4. We can send a certain limited data using GET method and amount of data depends on Servlet container.
+
+POST : 
+	1. To send request data using POST method of HTTP, we have to use doPost method of HttpServlet. 
+	2. Location of data sent using POST is inside of HTTP packet body. 
+	3. We can send as much data as required to send, it means we can send large amount of data using POST.
