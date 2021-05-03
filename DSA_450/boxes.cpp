@@ -3,10 +3,11 @@ using namespace std;
 class Solution {
 public:
     vector<int> minOperations(string b) {
+        int len = b.size();
         vector<int>res;
-        for(int i=0;i<b.size();i++){
+        for(int i=0;i<len;i++){
             int op=0;
-             for(int j=0;j<b.size();j++){
+             for(int j=0;j<len;j++){
                  if(b[j]=='1'){
                      op += abs(i-j);
                  }
