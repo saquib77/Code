@@ -1,7 +1,7 @@
 import java.util.*;
-import java.lang.*;
-class Arrlis2{
-	public static void main(String[]args){
+
+class Arrlis2 {
+	public static void main(String[] args) {
 		LinkedList<String> c = new LinkedList<>();
 		c.add("Jhon");
 		c.add("Damon");

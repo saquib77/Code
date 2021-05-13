@@ -72,11 +72,11 @@ Categories : It having 2 types :-
 	            if(c==1 && (p&1)==1) System.out.println("Power of Four");
 	            else System.out.println("Not a power of four");
 
-Control Statement : Statement that control that flow of execution of process
+Control Statement : Statement that control the flow of execution of process
 					there are 3 types of Control statement
 						i) Conditional      - if ,if-else,Switch
 						ii)Loop Based		- for loop,while loop,do-while loop,for-each loop
-						iii) Jump statement - break,continue
+						iii) Jump statement - break,continue,return
 					In Java goto is not a conditional statement but it is a reserved word.
 
 					Two Types of Loop : i) Deterministic & ii) Non-Deterministic.
