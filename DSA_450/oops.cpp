@@ -2,18 +2,20 @@
 using namespace std;
 class demo
 {
-private:
-    string x = "Naggaro";
-    friend string getter();
+public:
+    virtual int add() = 0;
 };
-string getter()
+class derived : demo
 {
-    demo d;
-    string k = d.x;
-    return k;
-}
+public:
+    int add()
+    {
+        return 5 + 5;
+    }
+};
 int main()
 {
-    cout << getter() << endl;
+    derived d;
+    cout << d.add();
     return 0;
 }
