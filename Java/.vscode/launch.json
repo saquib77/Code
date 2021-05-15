@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch tThread",
+            "request": "launch",
+            "mainClass": "Collection.tThread",
+            "projectName": "Java_760b03e1"
+        },
+        {
+            "type": "java",
             "name": "Launch Hindi",
             "request": "launch",
             "mainClass": "Hindi",
