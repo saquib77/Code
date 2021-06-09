@@ -46,12 +46,38 @@ typedef pair<int,int> ii;
 
 //TEST CASE
 #define TC(t) while (t--)
+
+int findRoots(int b, int c){
+	int d = (b*b) - 4*c;
+	if(d>0) return abs((-b + sqrt(d)) / 2);
+	else if(d==0) abs(-b/2);
+	else return abs(-b/2);
+}
+
+
+void solve(){
+	int t;
+	cin>>t;
+	TC(t){
+		int l,r;
+		cin>>l>>r;
+		vector<pair<int,int>>mp;
+		for (int i = l; i <= r; ++i)
+		{
+			for (int j = l; j <= r; ++j)
+			{
+				if(findRoots(2*i,j)>=0) mp.push_back({i,j});
+			}
+		}
+		
+		cout<<mp.size()<<"\n";
+	}
+}
 int main(){
-	FAST;
     #ifndef ONLINE_JUDGE 
         freopen("input.txt", "r", stdin); 
         freopen("output.txt", "w", stdout); 
     #endif 
- 
+ 	solve();
  	return 0;   
 }

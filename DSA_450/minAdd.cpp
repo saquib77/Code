@@ -52,6 +52,21 @@ int main(){
         freopen("input.txt", "r", stdin); 
         freopen("output.txt", "w", stdout); 
     #endif 
- 
- 	return 0;   
+    ll t;
+	cin>>t;
+	while(t--){
+		ll n,k,d;
+		cin>>n>>k;
+		ll sum=0;
+		for(ll i=0;i<n;i++){
+			cin>>d;
+			sum+=d;
+		}
+		ll avg = floor(sum/(k+1));
+		avg++;
+		ll ans = avg-n;
+		if(ans<0) cout<<0<<"\n";
+		else cout<<ans<<"\n";
+	}
+	return 0;   
 }

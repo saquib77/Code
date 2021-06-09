@@ -46,12 +46,20 @@ typedef pair<int,int> ii;
 
 //TEST CASE
 #define TC(t) while (t--)
+void solve(){
+	string s;
+	cin>>s;
+	map<char,pair<int,int>>mp;
+	for (int i = 0; i < s.length() ; ++i)
+	{
+		
+	}
+}
 int main(){
-	FAST;
     #ifndef ONLINE_JUDGE 
         freopen("input.txt", "r", stdin); 
         freopen("output.txt", "w", stdout); 
     #endif 
- 
+ 	solve();
  	return 0;   
 }

@@ -52,6 +52,19 @@ int main(){
         freopen("input.txt", "r", stdin); 
         freopen("output.txt", "w", stdout); 
     #endif 
- 
+ 	vi v;
+ 	ll n;
+ 	cin>>n;
+ 	for(ll i=0;i<n;i++){
+ 		ll d;
+ 		cin>>d;
+ 		v.push_back(d);
+ 	}
+ 	ll count=n,i=0;
+ 	for(i=0;i<n;i++){
+ 		if(v[i]==v[i+1]) count--;
+ 		else continue;
+ 	}
+ 	cout<<count;
  	return 0;   
 }

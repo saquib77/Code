@@ -46,12 +46,35 @@ typedef pair<int,int> ii;
 
 //TEST CASE
 #define TC(t) while (t--)
+
+void solve(){
+	ll n,a,x;
+	cin>>n>>a>>x;
+	ll b=n-a;
+	if(x>a*b) cout<<"-1\n";
+	else{
+		ll p = (x/b);
+		ll q = x%b;
+		for(ll i=0;i<(n-p-b-1);i++){
+			cout<<"0 ";
+		}
+		for(ll i=0;i<q;i++){
+			cout<<"1 ";
+		}
+		cout<<"0 ";
+		for(ll i=0;i<(b-q);i++){
+			cout<<"1 ";
+		}
+		for(ll i=0;i<p;i++){
+			cout<<"0 ";
+		}
+	}
+}
 int main(){
-	FAST;
     #ifndef ONLINE_JUDGE 
         freopen("input.txt", "r", stdin); 
         freopen("output.txt", "w", stdout); 
     #endif 
- 
+ 	solve();
  	return 0;   
 }
