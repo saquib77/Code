@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct Node{
+	char *name;
+	int age;			//Self Refrential Structure
+	struct Node *next;
+}*head=NULL;
+
+struct Node* createList(){
+	int n;
+	struct Node* res=NULL;
+	printf("Enter num of node to create :");
+	scanf("%d",&n);
+	for(int i=1;i<=n;i++){
+		temp->next=NULL;
+		char *name;
+		int age;
+		printf("Enter Name & Age :");
+		scanf("%s %d",&name,&age);
+		if(i==1){
+			head=temp;
+		}else{
+			struct Node* p=NULL;
+			p->name = name;
+			p->age=age;
+			temp=p;
+		}
+	}
+	return res;
+}
+
+void traverse(struct Node* head){
+	struct Node* t=head;
+	while(t->next!=NULL){
+		printf("%s %d\n",t->name,t->age);
+		t=t->next;
+	}
+}
+
+int main(int argc,char* argv[]){
+	int n;
+	a:
+	printf("1,Create List\n2.Traverse List\n3.Exit\nEnter Option :");
+	scanf("%d",&n);
+	switch(n){
+		case 1:
+			head = createList();
+			goto a;
+		case 2:
+			traverse(head);
+			goto a;
+		case 3:
+			return 0;
+		default:
+			printf("Wrong Option!");
+	}
+	return 0;
+}

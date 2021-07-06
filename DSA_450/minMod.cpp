@@ -52,6 +52,13 @@ int main(){
         freopen("input.txt", "r", stdin); 
         freopen("output.txt", "w", stdout); 
     #endif 
- 
+ 	ll t,m,k;
+ 	string s;
+ 	cin>>t;
+ 	TC(t){
+ 		cin<<m<<k;
+ 		cin>>s;
+ 		
+ 	}
  	return 0;   
 }
