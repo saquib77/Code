@@ -24,7 +24,33 @@ template<typename T,typename T1> T amn(T &a,T1 b){if(b<a)a=b;return a;}
 //-------------------------------------------------------------------------------------------
 
 void solve(){
-	
+	int t;
+    cin>>t;
+    tc(t){
+        int n;
+        cin>>n;
+        if(n<10){
+            rep(i,0,n){
+                cout<<(char)('a'+i);
+            }
+            cout<<nl;
+        }else{
+            string bet = "b";
+            if(n%2){
+                bet+='c';
+                n--;
+            }
+            n/=2;
+            rep(i,0,n){
+                cout<<'a';
+            }
+            cout<<bet;
+            rep(i,1,n){
+                cout<<'a';
+            }
+            cout<<nl;
+        }
+    }
 }
 
 //-------------------------------------------------------------------------------------------

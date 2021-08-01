@@ -24,7 +24,35 @@ template<typename T,typename T1> T amn(T &a,T1 b){if(b<a)a=b;return a;}
 //-------------------------------------------------------------------------------------------
 
 void solve(){
-	
+	int t;
+    cin>>t;
+    tc(t){
+        int n;
+        cin>>n;
+        int ar[n];
+        unordered_map<int,int>m;
+        rep(i,0,n){
+            cin>>ar[i];
+            m[ar[i]] = 0;
+        }
+        int bP=0;
+        rep(i,0,n){
+            m[ar[i]]++;
+        }
+        for(auto [k,v] : m){
+            if(v>1){
+                int res = (n-v);
+                res *= v;
+                bP+=res;
+            }else bP+=n-1;
+        }
+        // rep(i,0,n){
+        //     rep(j,0,n){
+        //         if(i!=j && (ar[i]-ar[j])/ar[i] < (ar[i]-ar[j])/ar[j])bP++;
+        //     }
+        // }
+        cout<<bP<<nl;
+    }
 }
 
 //-------------------------------------------------------------------------------------------

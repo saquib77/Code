@@ -4,6 +4,7 @@ using namespace std;
 #define int                         long long
 #define tc(t)                       while(t--)
 #define c2i(c)                      (c-'0')
+#define vi                          vector<int>
 #define mp                          make_pair              
 #define fr                          first                 
 #define sc                          second                
@@ -24,7 +25,27 @@ template<typename T,typename T1> T amn(T &a,T1 b){if(b<a)a=b;return a;}
 //-------------------------------------------------------------------------------------------
 
 void solve(){
-	
+	int t;
+    cin>>t;
+    tc(t){
+        int n;
+        vi a(n),b(n);
+        rep(i,0,n) cin>>a[i];
+        rep(i,0,n) cin>>b[i];
+        int minT = 4*n+1;
+        rep(i,0,n){
+            minT = amn((a[0]+i)%n,minT);
+        }
+        vi ind,c;
+        rep(i,0,n){
+            if((a[0]+i)%n==minT) ind.pb(i);
+            i++;
+        }
+        if(ind.size()==1){
+            rotate(b.begin(), b.begin()+ind[0], b.end());
+
+        }
+    }
 }
 
 //-------------------------------------------------------------------------------------------

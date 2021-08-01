@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+class Sol{
+	public :
+	static int x=10;
+	void print(){
+		cout<<x<<endl;
+	}
+	void display(){
+		print();
+	}
+};
+
+class Sol1{
+	public :
+	Sol s;
+	Sol1(){
+		s.display();
+	}
+	~Sol1(){
+		cout<<"Destructor Called"<<endl;
+	}
+};
+
+int main(){
+	Sol1 s;
+	return 0;
+}
