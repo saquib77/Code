@@ -1,4 +1,3 @@
-//Saquib Ahmed
 #include<bits/stdc++.h>
 using namespace std;
 #define nl                          "\n"
@@ -23,41 +22,22 @@ const int32_t MM=998244353;
 template<typename T,typename T1> T amx(T &a,T1 b){if(b>a)a=b;return a;}
 template<typename T,typename T1> T amn(T &a,T1 b){if(b<a)a=b;return a;}
 //-------------------------------------------------------------------------------------------
-
-pair<int,int> selectPackage(int truckSpace,int numPackage,vector<int>packageSpace){
-    map<int,int> mp;
-    int mx = INT_MIN;
-    truckSpace-=30;
-    vector<int> vec;
-    for(int i=0;i<numPackage;i++){
-        int v = packageSpace[i];
-        int f = truckSpace-v;
-        auto it = mp.find(f);
-        if(it!=mp.end()){
-            int cmx = v > truckSpace-v ? v : truckSpace-v;
-            if(cmx > mx){
-                mx = cmx;
-                vec.push_back(mp[truckSpace-v]);
-                vec.push_back(i);
-            }
-        }
-        mp[v] = i;
-    }
-    return {vec[0],vec[1]};
-}
-
+int a[11]={0,1,11,111,1111,11111,111111,1111111,11111111,111111111,1111111111};
 void solve(){
-	int trSpace=0;
-    int numpk=0;
-    vector<int>pkSpace;
-    cin>>trSpace;
-    cin>>numpk;
-    rep(i,0,numpk){
-        int d;cin>>d;
-        pkSpace.push_back(d);
+	int t;
+    cin>>t;
+    tc(t){
+        int n,res=0;
+        cin>>n;
+        int i=1;
+        for(i=1;i<=10;i++){
+            if(n/a[i]==0) break;
+        }
+        res+=(i-2)*9;
+        if(n/a[i-1]>9) res--;
+        res+=n/a[i-1];
+        cout<<res<<nl;
     }
-    pair<int,int> p = selectPackage(trSpace,numpk,pkSpace);
-    cout<<p.first<<" "<<p.second<<nl;
 }
 
 //-------------------------------------------------------------------------------------------

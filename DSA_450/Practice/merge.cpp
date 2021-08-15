@@ -1,4 +1,3 @@
-//Saquib Ahmed
 #include<bits/stdc++.h>
 using namespace std;
 #define nl                          "\n"
@@ -24,40 +23,52 @@ template<typename T,typename T1> T amx(T &a,T1 b){if(b>a)a=b;return a;}
 template<typename T,typename T1> T amn(T &a,T1 b){if(b<a)a=b;return a;}
 //-------------------------------------------------------------------------------------------
 
-pair<int,int> selectPackage(int truckSpace,int numPackage,vector<int>packageSpace){
-    map<int,int> mp;
-    int mx = INT_MIN;
-    truckSpace-=30;
-    vector<int> vec;
-    for(int i=0;i<numPackage;i++){
-        int v = packageSpace[i];
-        int f = truckSpace-v;
-        auto it = mp.find(f);
-        if(it!=mp.end()){
-            int cmx = v > truckSpace-v ? v : truckSpace-v;
-            if(cmx > mx){
-                mx = cmx;
-                vec.push_back(mp[truckSpace-v]);
-                vec.push_back(i);
-            }
-        }
-        mp[v] = i;
+void merge(int ar[],int l,int m,int r){
+    int n1 = m-l+1;
+    int n2 = r-m;
+    int a[n1],b[n2];
+    for(int i=0;i<n1;i++){
+        a[i] = ar[l+i];
     }
-    return {vec[0],vec[1]};
+    for(int j=0;j<n2;j++){
+        b[j] = ar[m+1+j];
+    }
+    int i=0,j=0,k=l;
+    while(i<n1 && j<n2){
+        if(a[i]<b[j]){
+            ar[k++] = a[i++];
+        }else{
+            ar[k++] = b[j++];
+        }
+    }
+    while(i<n1){
+        ar[k++] = a[i++];
+    }
+    while(j<n2){
+        ar[k++] = b[j++];
+    }
 }
 
-void solve(){
-	int trSpace=0;
-    int numpk=0;
-    vector<int>pkSpace;
-    cin>>trSpace;
-    cin>>numpk;
-    rep(i,0,numpk){
-        int d;cin>>d;
-        pkSpace.push_back(d);
+void mergeSort(int ar[],int l,int r){
+    if(l<r){
+        int m = (l+r)/2;
+        mergeSort(ar,l,m);
+        mergeSort(ar,m+1,r);
+        merge(ar,l,m,r);
     }
-    pair<int,int> p = selectPackage(trSpace,numpk,pkSpace);
-    cout<<p.first<<" "<<p.second<<nl;
+}
+void print(int ar[],int n){
+    rep(i,0,n) cout<<ar[i]<<" ";
+}
+void solve(){
+	int n;
+    cin>>n;
+    int ar[n];
+    for(int i=0;i<n;i++){
+        cin>>ar[i];
+    }
+    mergeSort(ar,0,n);
+    print(ar,n);
 }
 
 //-------------------------------------------------------------------------------------------

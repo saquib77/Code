@@ -1,4 +1,3 @@
-//Saquib Ahmed
 #include<bits/stdc++.h>
 using namespace std;
 #define nl                          "\n"
@@ -10,6 +9,7 @@ using namespace std;
 #define sc                          second                
 #define pb                          push_back             
 #define pf                          push_front
+#define sort(x)                     sort(begin(x),end(x));
 #define mem0(a)                     memset(a,0,sizeof(a))
 #define mem1(a)                     memset(a,-1,sizeof(a))
 #define all(x)                      (x).begin(), (x).end() 
@@ -22,42 +22,45 @@ const int32_t M=1e9+7;
 const int32_t MM=998244353;
 template<typename T,typename T1> T amx(T &a,T1 b){if(b>a)a=b;return a;}
 template<typename T,typename T1> T amn(T &a,T1 b){if(b<a)a=b;return a;}
+template <typename Map>
+bool key_compare (Map const &lhs, Map const &rhs) {
+    auto pred = [] (auto a, auto b) { return a.first == b.first; };
+    return lhs.size() == rhs.size() && std::equal(lhs.begin(), lhs.end(), rhs.begin(), pred);
+}
 //-------------------------------------------------------------------------------------------
 
-pair<int,int> selectPackage(int truckSpace,int numPackage,vector<int>packageSpace){
-    map<int,int> mp;
-    int mx = INT_MIN;
-    truckSpace-=30;
-    vector<int> vec;
-    for(int i=0;i<numPackage;i++){
-        int v = packageSpace[i];
-        int f = truckSpace-v;
-        auto it = mp.find(f);
-        if(it!=mp.end()){
-            int cmx = v > truckSpace-v ? v : truckSpace-v;
-            if(cmx > mx){
-                mx = cmx;
-                vec.push_back(mp[truckSpace-v]);
-                vec.push_back(i);
-            }
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string, vector<string>> mp;
+        for(auto i: strs){
+            string temp = i;
+            sort(temp);
+            mp[temp].push_back(i);
         }
-        mp[v] = i;
+        vector<vector<string>> res;
+        for(auto i: mp){
+            res.push_back(i.second);
+        }
+        return res;
     }
-    return {vec[0],vec[1]};
-}
+};
 
 void solve(){
-	int trSpace=0;
-    int numpk=0;
-    vector<int>pkSpace;
-    cin>>trSpace;
-    cin>>numpk;
-    rep(i,0,numpk){
-        int d;cin>>d;
-        pkSpace.push_back(d);
+	int n;
+    cin>>n;
+    vector<string> strs(n);
+    for(int i=0;i<n;i++){
+        string s;
+        cin>>s;
+        strs.push_back(s);
     }
-    pair<int,int> p = selectPackage(trSpace,numpk,pkSpace);
-    cout<<p.first<<" "<<p.second<<nl;
+    Solution sl;
+    vector<vector<string>> res = sl.groupAnagrams(strs);
+    for(auto i: res){
+        for(auto j : i) cout<<j<<" ";
+        cout<<nl;
+    }
 }
 
 //-------------------------------------------------------------------------------------------

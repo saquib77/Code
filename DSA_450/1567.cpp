@@ -1,4 +1,3 @@
-//Saquib Ahmed
 #include<bits/stdc++.h>
 using namespace std;
 #define nl                          "\n"
@@ -10,6 +9,7 @@ using namespace std;
 #define sc                          second                
 #define pb                          push_back             
 #define pf                          push_front
+#define sort(x)                     sort(begin(x),end(x));
 #define mem0(a)                     memset(a,0,sizeof(a))
 #define mem1(a)                     memset(a,-1,sizeof(a))
 #define all(x)                      (x).begin(), (x).end() 
@@ -24,40 +24,43 @@ template<typename T,typename T1> T amx(T &a,T1 b){if(b>a)a=b;return a;}
 template<typename T,typename T1> T amn(T &a,T1 b){if(b<a)a=b;return a;}
 //-------------------------------------------------------------------------------------------
 
-pair<int,int> selectPackage(int truckSpace,int numPackage,vector<int>packageSpace){
-    map<int,int> mp;
-    int mx = INT_MIN;
-    truckSpace-=30;
-    vector<int> vec;
-    for(int i=0;i<numPackage;i++){
-        int v = packageSpace[i];
-        int f = truckSpace-v;
-        auto it = mp.find(f);
-        if(it!=mp.end()){
-            int cmx = v > truckSpace-v ? v : truckSpace-v;
-            if(cmx > mx){
-                mx = cmx;
-                vec.push_back(mp[truckSpace-v]);
-                vec.push_back(i);
+class Solution {
+public:
+    int getMaxLen(vector<int>& nums) {
+        int n = nums.size();
+        int res = 0;
+        for(int i=0;i<n;){
+            int s = i;
+            while(s<n && nums[s]==0) s++;
+            int e=s;
+            int c=0;
+            int sn=-1,en=-1;
+            while(e<n && nums[e]!=0){
+                if(nums[e]<0){
+                    c++;
+                    if(sn==-1) sn=e;
+                    en=e;
+                }
+                e++;
             }
+            if(c%2==0) res = max(res, e-s);
+            else{
+                if(sn!=-1) res = max(res,e-sn-1);
+                if(en!=-1) res = max(res,en-s);
+            }
+            i=e+1;
         }
-        mp[v] = i;
+        return res;
     }
-    return {vec[0],vec[1]};
-}
+};
 
 void solve(){
-	int trSpace=0;
-    int numpk=0;
-    vector<int>pkSpace;
-    cin>>trSpace;
-    cin>>numpk;
-    rep(i,0,numpk){
-        int d;cin>>d;
-        pkSpace.push_back(d);
-    }
-    pair<int,int> p = selectPackage(trSpace,numpk,pkSpace);
-    cout<<p.first<<" "<<p.second<<nl;
+	Solution s;
+    int n;
+    cin>>n;
+    vector<int> v(n);
+    rep(i,0,n) cin>>v[i];
+    cout<<s.getMaxLen(v)<<nl;
 }
 
 //-------------------------------------------------------------------------------------------

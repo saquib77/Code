@@ -1,4 +1,3 @@
-//Saquib Ahmed
 #include<bits/stdc++.h>
 using namespace std;
 #define nl                          "\n"
@@ -10,6 +9,7 @@ using namespace std;
 #define sc                          second                
 #define pb                          push_back             
 #define pf                          push_front
+#define sort(x)                     sort(begin(x),end(x));
 #define mem0(a)                     memset(a,0,sizeof(a))
 #define mem1(a)                     memset(a,-1,sizeof(a))
 #define all(x)                      (x).begin(), (x).end() 
@@ -23,41 +23,31 @@ const int32_t MM=998244353;
 template<typename T,typename T1> T amx(T &a,T1 b){if(b>a)a=b;return a;}
 template<typename T,typename T1> T amn(T &a,T1 b){if(b<a)a=b;return a;}
 //-------------------------------------------------------------------------------------------
-
-pair<int,int> selectPackage(int truckSpace,int numPackage,vector<int>packageSpace){
-    map<int,int> mp;
-    int mx = INT_MIN;
-    truckSpace-=30;
-    vector<int> vec;
-    for(int i=0;i<numPackage;i++){
-        int v = packageSpace[i];
-        int f = truckSpace-v;
-        auto it = mp.find(f);
-        if(it!=mp.end()){
-            int cmx = v > truckSpace-v ? v : truckSpace-v;
-            if(cmx > mx){
-                mx = cmx;
-                vec.push_back(mp[truckSpace-v]);
-                vec.push_back(i);
-            }
-        }
-        mp[v] = i;
-    }
-    return {vec[0],vec[1]};
-}
-
+int a, ans = 0;
+string c, b[1001];
 void solve(){
-	int trSpace=0;
-    int numpk=0;
-    vector<int>pkSpace;
-    cin>>trSpace;
-    cin>>numpk;
-    rep(i,0,numpk){
-        int d;cin>>d;
-        pkSpace.push_back(d);
+	cin >> a;
+    for (int i = 0; i < a; i++) {
+        cin >> c;
+        if (c[0] == 'O' && c[1] == 'O' && ans == 0) {
+            c[0] = '+';
+            c[1] = '+';
+            ans = 1;
+        } else if (c[3] == 'O' && c[4] == 'O'&& ans == 0) {
+            c[3] = '+';
+            c[4] = '+';
+            ans = 1;
+        }
+        b[i] = c;
     }
-    pair<int,int> p = selectPackage(trSpace,numpk,pkSpace);
-    cout<<p.first<<" "<<p.second<<nl;
+    if (ans == 1) {
+        cout << "YES" << endl;
+        for (int i = 0; i < a; i++) {
+            cout << b[i] << endl;
+        }
+    } else {
+        cout << "NO";
+    }
 }
 
 //-------------------------------------------------------------------------------------------
