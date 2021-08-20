@@ -1,0 +1,76 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define nl                          "\n"
+#define int                         long long
+#define tc(t)                       while(t--)
+#define c2i(c)                      (c-'0')
+#define mp                          make_pair              
+#define fr                          first                 
+#define sc                          second                
+#define pb                          push_back             
+#define pf                          push_front
+#define sort(x)                     sort(begin(x),end(x));
+#define mem0(a)                     memset(a,0,sizeof(a))
+#define mem1(a)                     memset(a,-1,sizeof(a))
+#define all(x)                      (x).begin(), (x).end() 
+#define rall(x)                     (x).rbegin(), (x).rend()
+#define rep(i,a,b)                  for(int i = a; i < b; i++)
+#define cnt(str,ch)                 count(str.begin(),str.end(),ch) 
+#define ers(str,index)              str.erase(str.begin()+index)
+const int INF=1e18;
+const int32_t M=1e9+7;
+const int32_t MM=998244353;
+template<typename T,typename T1> T amx(T &a,T1 b){if(b>a)a=b;return a;}
+template<typename T,typename T1> T amn(T &a,T1 b){if(b<a)a=b;return a;}
+//-------------------------------------------------------------------------------------------
+
+void solve(){
+	int t,n,m;
+    int a[1001],b[1001];
+    cin>>t;
+    tc(t){
+        cin>>n>>m;
+        for(int i=0; i<n; i++){
+            cin>>a[i];
+        }
+        for(int i=0; i<m; i++){
+            cin>>b[i];
+        }
+        vector<int>v;
+
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                if(a[i] == b[j]){
+                    v.push_back(a[i]);
+                    break;
+                }
+            }
+            if(v.size() == 1){
+                break;
+            }
+        }
+        if(v.size() == 0){
+            cout<<"NO"<<endl;
+        }
+        else{
+            cout<<"YES"<<endl;
+            cout<<v.size()<<" ";
+            for(int i=0; i<v.size(); i++){
+                cout<<v[i]<<endl;
+            }
+        }
+    }
+}
+
+//-------------------------------------------------------------------------------------------
+signed main(){
+    ios_base::sync_with_stdio(0); 
+    cin.tie(NULL); cout.tie(NULL);
+    #ifndef ONLINE_JUDGE 
+        freopen("input.txt", "r", stdin); 
+        freopen("output.txt", "w", stdout);
+        freopen("error.txt", "w", stderr); 
+    #endif 
+    solve();
+    return 0;   
+}
